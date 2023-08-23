@@ -35,9 +35,9 @@ export default ({ command }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
-      },
-      extensions: ['.js', '.json', '.ts', '.vue'] // 使用路径别名时想要省略的后缀名，可以自己 增减
+      }
     },
+    // 全局变量+全局引入sass
     css: {
       preprocessorOptions: {
         scss: {
@@ -47,10 +47,10 @@ export default ({ command }: ConfigEnv): UserConfig => {
     },
     // 配置前端服务地址和端口
     server: {
-      host: '0.0.0.0',//自定义主机名
-      port: 8000,//自定义端口
-      // 是否开启 https
-      https: false,
+      host: '0.0.0.0', //自定义主机名
+      port: 8000, //自定义端口
+      open: true, // 自动在浏览器打开
+      https: false, // 是否开启 https
     },
     // 设置反向代理，跨域
     // proxy: {
