@@ -36,16 +36,16 @@
 <script lang="ts" setup>
   import { reactive, ref } from 'vue'
   import type { FormInstance, FormRules } from 'element-plus'
-  // import { setToken } from '@/utils/auth'
-  // import { useCache } from '@/hooks/web/useCache'
-  // import { useAppStore } from '@/store/modules/app'
-  // import { loginApi } from '@/api/login'
+  import { setToken } from '@/utils/auth'
+  import { useCache } from '@/hooks/useCache'
+  import { useAppStore } from '@/store/modules/app'
+  import { loginApi } from '@/api/login'
   import router from '@/router'
 
-  // const appStore = useAppStore()
-  // const { wsCache } = useCache()
+  const appStore = useAppStore()
+  const { wsCache } = useCache()
 
-  // const loading = ref(false)
+  const loading = ref(false)
 
   const formSize = ref('default')
 
@@ -75,28 +75,27 @@
 
   const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return
-    // await formEl.validate(async (valid, fields) => {
-      // if (valid) {
-        // loading.value = true
-        // try {
-          // const res: any = await loginApi(ruleForm)
-          // console.log(res)
-          // if (res.code == 200) {
-            // wsCache.set(appStore.getUserInfo, {
-            //   username: 'admin',
-            //   password: 'admin'
-            // })
-            // setToken('admin')
+    await formEl.validate(async (valid, fields) => {
+      if (valid) {
+        loading.value = true
+        try {
+          const res: any = await loginApi(ruleForm)
+          if (res.code == 200) {
+            wsCache.set(appStore.getUserInfo, {
+              username: 'admin',
+              password: 'admin'
+            })
+            setToken('admin')
             // window.location.href = '/'
             router.push('/')
-          // }
-        // } finally {
-        //   loading.value = false
-        // }
-      // } else {
-      //   console.log('error submit!', fields)
-      // }
-    // })
+          }
+        } finally {
+          loading.value = false
+        }
+      } else {
+        console.log('error submit!', fields)
+      }
+    })
   }
 </script>
 

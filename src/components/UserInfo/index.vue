@@ -20,10 +20,10 @@
 <script setup lang="ts">
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { useRouter } from 'vue-router'
-  // import { useCache } from '@/hooks/web/useCache'
+  import { useCache } from '@/hooks/useCache'
 
   const { replace } = useRouter()
-  // const { wsCache } = useCache()
+  const { wsCache } = useCache()
 
   const username = 'luis'
 
@@ -34,7 +34,7 @@
       type: 'warning'
     })
       .then(async () => {
-        // wsCache.clear()
+        wsCache.clear()
         await replace('/login')
         ElMessage({
           type: 'success',
@@ -71,5 +71,4 @@
       }
     }
   }
-  // }
 </style>
