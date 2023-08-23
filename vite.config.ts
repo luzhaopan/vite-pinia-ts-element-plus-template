@@ -45,6 +45,6 @@ export default defineConfig({
   // 		// 后台地址
   // 		target: 'http://127.0.0.1:8000/',
   // 		changeOrigin: true,
-  // 		rewrite: path => path.replace(/^\/api1/, '')
+  // 		rewrite: path => path.replace(/^\/api/, '')
   // 	}
 })

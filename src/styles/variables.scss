@@ -25,36 +25,21 @@ $base-font-size-big: 16px;
 $base-font-size-bigger: 18px;
 $base-font-size-max: 22px;
 $base-font-color: #606266;
+
 $base-color-blue: $base-color-default;
 $base-color-green: #41b882;
-$base-color-white: #fff;
-$base-color-black: #000;
-$base-color-yellow: #ffa91b;
-$base-color-orange: #ff6700;
 $base-color-red: #f34d37;
-$base-color-gray: rgba(0, 0, 0, 0.65);
-$base-main-width: 1279px;
-$base-border-radius: 4px;
+
 $base-border-color: #dcdfe6;
 
-//输入框高度
-$base-input-height: 32px;
 //默认paddiing
 $base-padding: 20px;
+
 //默认阴影
 $base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-//横向布局时top-bar、logo、一级菜单的高度
-$base-top-bar-height: 65px;
-//纵向布局时logo的高度
-$base-logo-height: 75px;
+
 //顶部nav-bar的高度
 $base-nav-bar-height: 50px;
-//顶部多标签页tabs-bar的高度
-$base-tabs-bar-height: 55px;
-//顶部多标签页tabs-bar中每一个item的高度
-$base-tag-item-height: 34px;
-//菜单li标签的高度
-$base-menu-item-height: 50px;
 
 //纵向布局时左侧导航未折叠时的宽度
 $base-foot-height: 54px;
