@@ -18,7 +18,7 @@
           type="password"
           v-model.trim="ruleForm.password"
           autocomplete="off"
-        ></el-input>
+        />
       </el-form-item>
       <el-form-item label="" prop="remember">
         <el-switch v-model="ruleForm.remember" />
