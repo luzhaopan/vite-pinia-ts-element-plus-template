@@ -17,34 +17,34 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, computed } from 'vue'
-  import { useAppStore } from '@/store/modules/app'
-  import { useRouter } from 'vue-router'
-  import Logo from './Logo.vue'
-  import MenuItem from './MenuItem.vue'
+import { reactive, computed } from 'vue'
+import { useAppStore } from '@/store/modules/app'
+import { useRouter } from 'vue-router'
+import Logo from './Logo.vue'
+import MenuItem from './MenuItem.vue'
 
-  const route = useRouter()
-  const routes = reactive(useRouter().options.routes)
+const route = useRouter()
+const routes = reactive(useRouter().options.routes)
 
-  const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
 
-  const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
 
-  const appStore = useAppStore()
-  const collapse = computed(() => appStore.getCollapse)
+const appStore = useAppStore()
+const collapse = computed(() => appStore.getCollapse)
 
-  const activeMenu = computed(() => {
-    const { currentRoute } = route
-    return currentRoute.value.path
-  })
+const activeMenu = computed(() => {
+  const { currentRoute } = route
+  return currentRoute.value.path
+})
 </script>
 
 <style>
-  /* .el-menu-vertical-demo:not(.el-menu--collapse) {
+/* .el-menu-vertical-demo:not(.el-menu--collapse) {
       width: 200px;
       min-height: 400px;
     } */

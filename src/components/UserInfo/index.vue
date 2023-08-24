@@ -18,57 +18,57 @@
 </template>
 
 <script setup lang="ts">
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { useRouter } from 'vue-router'
-  import { useCache } from '@/hooks/useCache'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { useRouter } from 'vue-router'
+import { useCache } from '@/hooks/useCache'
 
-  const { replace } = useRouter()
-  const { wsCache } = useCache()
+const { replace } = useRouter()
+const { wsCache } = useCache()
 
-  const username = 'luis'
+const username = 'luis'
 
-  const logOut = async () => {
-    ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
-      .then(async () => {
-        wsCache.clear()
-        await replace('/login')
-        ElMessage({
-          type: 'success',
-          message: '退出登录成功！'
-        })
+const logOut = async () => {
+  ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  })
+    .then(async () => {
+      wsCache.clear()
+      await replace('/login')
+      ElMessage({
+        type: 'success',
+        message: '退出登录成功！'
       })
-      .catch(() => {})
-  }
+    })
+    .catch(() => {})
+}
 </script>
 
 <style lang="scss" scoped>
-  .avatar-container {
-    margin-right: 20px;
+.avatar-container {
+  margin-right: 20px;
 
-    .avatar-wrapper {
-      display: flex;
-      align-content: center;
-      align-items: center;
-      justify-content: center;
-      justify-items: center;
+  .avatar-wrapper {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
 
-      .user-avatar {
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
+    .user-avatar {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
 
-      .user-name {
-        position: relative;
-        margin-left: 5px;
-        margin-left: 5px;
-        cursor: pointer;
-      }
+    .user-name {
+      position: relative;
+      margin-left: 5px;
+      margin-left: 5px;
+      cursor: pointer;
     }
   }
+}
 </style>

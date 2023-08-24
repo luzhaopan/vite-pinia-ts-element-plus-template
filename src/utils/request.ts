@@ -1,10 +1,5 @@
 import axios from 'axios'
-import type {
-  AxiosInstance,
-  InternalAxiosRequestConfig,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
+import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 import router from '@/router'

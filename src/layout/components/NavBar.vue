@@ -20,47 +20,47 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from 'vue'
-  import { useAppStore } from '@/store/modules/app'
+import { defineComponent, computed } from 'vue'
+import { useAppStore } from '@/store/modules/app'
 
-  export default defineComponent({
-    setup() {
-      const appStore = useAppStore()
-      const collapse = computed(() => appStore.getCollapse)
+export default defineComponent({
+  setup() {
+    const appStore = useAppStore()
+    const collapse = computed(() => appStore.getCollapse)
 
-      const collapseHandle = () => {
-        appStore.setCollapse(!collapse.value)
-      }
-
-      return {
-        collapse,
-        collapseHandle
-      }
+    const collapseHandle = () => {
+      appStore.setCollapse(!collapse.value)
     }
-  })
+
+    return {
+      collapse,
+      collapseHandle
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-  .headbar-container {
-    z-index: 10;
-    background-color: var(--gl-headbar-background-color);
-    box-shadow: var(--el-box-shadow-light);
-    height: $base-nav-bar-height;
-    overflow: hidden;
-    position: relative;
+.headbar-container {
+  z-index: 10;
+  background-color: var(--gl-headbar-background-color);
+  box-shadow: var(--el-box-shadow-light);
+  height: $base-nav-bar-height;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  .left-panel {
     display: flex;
-    justify-content: space-between;
-    align-content: center;
-    .left-panel {
-      display: flex;
-      align-items: center;
-      justify-items: center;
-      margin-left: 10px;
-    }
+    align-items: center;
+    justify-items: center;
+    margin-left: 10px;
   }
-  @media only screen and (max-width: 768px) {
-    .hidden-xs-only {
-      display:none!important;
-    }
+}
+@media only screen and (max-width: 768px) {
+  .hidden-xs-only {
+    display: none !important;
   }
+}
 </style>

@@ -1,19 +1,13 @@
 <template>
   <el-breadcrumb class="app-breadcrumb" separator="/">
-    <transition-group
-      appear
-      enter-active-class="animate__animated animate__fadeInRight"
-    >
+    <transition-group appear enter-active-class="animate__animated animate__fadeInRight">
       <el-breadcrumb-item
         v-for="(item, index) in breadcrumbItems"
         :key="item.path"
         :to="getPath(item)"
       >
         <span
-          v-if="
-            item.redirect === 'noRedirect' ||
-            index == breadcrumbItems.length - 1
-          "
+          v-if="item.redirect === 'noRedirect' || index == breadcrumbItems.length - 1"
           class="no-redirect"
         >
           {{ item.meta.title }}</span
@@ -25,49 +19,49 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
-  import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
 
-  const { currentRoute } = useRouter()
+const { currentRoute } = useRouter()
 
-  const breadcrumbItems = ref<any[]>([])
+const breadcrumbItems = ref<any[]>([])
 
-  const getBreadcrumb = (route: RouteLocationNormalizedLoaded) => {
-    const list = route.matched.filter((item) => item.name !== 'dashboard')
-    breadcrumbItems.value = list.map((item) => {
-      return item
-    })
-    // console.log('breadcrumbItems', breadcrumbItems.value)
+const getBreadcrumb = (route: RouteLocationNormalizedLoaded) => {
+  const list = route.matched.filter((item) => item.name !== 'dashboard')
+  breadcrumbItems.value = list.map((item) => {
+    return item
+  })
+  // console.log('breadcrumbItems', breadcrumbItems.value)
+}
+
+const getPath = (val: any) => {
+  if (val.children && val.children.length) {
+    getPath(val.children[0])
+  } else {
+    // console.log(val.path)
+    return val.path
   }
+}
 
-  const getPath = (val: any) => {
-    if (val.children && val.children.length) {
-      getPath(val.children[0])
-    } else {
-      // console.log(val.path)
-      return val.path
-    }
-  }
-
-  watch(
-    () => currentRoute.value,
-    (route: RouteLocationNormalizedLoaded) => {
-      getBreadcrumb(route)
-    },
-    { immediate: true }
-  )
+watch(
+  () => currentRoute.value,
+  (route: RouteLocationNormalizedLoaded) => {
+    getBreadcrumb(route)
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss" scoped>
-  .app-breadcrumb.el-breadcrumb {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 8px;
+.app-breadcrumb.el-breadcrumb {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 50px;
+  margin-left: 8px;
 
-    .no-redirect {
-      color: #97a8be;
-      cursor: text;
-    }
+  .no-redirect {
+    color: #97a8be;
+    cursor: text;
   }
+}
 </style>
