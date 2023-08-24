@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
   import { ref, watch } from 'vue'
-  import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
+  import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
 
   const { currentRoute } = useRouter()
 
@@ -37,15 +37,14 @@
     breadcrumbItems.value = list.map((item) => {
       return item
     })
-    console.log('breadcrumbItems', breadcrumbItems.value)
+    // console.log('breadcrumbItems', breadcrumbItems.value)
   }
 
   const getPath = (val: any) => {
     if (val.children && val.children.length) {
       getPath(val.children[0])
     } else {
-      console.log(val.path)
-
+      // console.log(val.path)
       return val.path
     }
   }
