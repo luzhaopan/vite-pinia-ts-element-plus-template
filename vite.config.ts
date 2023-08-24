@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import type { UserConfig, ConfigEnv } from 'vite'
+import { UserConfig, ConfigEnv, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -7,10 +7,12 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 
-
 // https://vitejs.dev/config/
-export default ({ command }: ConfigEnv): UserConfig => {
+const root = process.cwd()
+export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build' // 保证开发阶段可以使用mock，生产环境禁止开启
+  const env = loadEnv(mode, root) as any
+  
   return {
     plugins: [
       vue(),
@@ -48,17 +50,18 @@ export default ({ command }: ConfigEnv): UserConfig => {
     // 配置前端服务地址和端口
     server: {
       host: '0.0.0.0', //自定义主机名
-      port: 8000, //自定义端口
+      port: env.VITE_PORT, // 自定义端口
       open: true, // 自动在浏览器打开
       https: false, // 是否开启 https
-    },
-    // 设置反向代理，跨域
-    // proxy: {
-    // 	'/api': {
-    // 		// 后台地址
-    // 		target: 'http://127.0.0.1:8000/',
-    // 		changeOrigin: true,
-    // 		rewrite: path => path.replace(/^\/api/, '')
-    // 	}
+      // 设置反向代理，跨域
+      proxy: {
+        '/api': {
+          // 后台地址
+          target: 'http://127.0.0.1:8000/',
+          changeOrigin: true,
+          rewrite: (path: string) => path.replace(/^\/api/, '')
+        }
+      }
+    }
   }
 }

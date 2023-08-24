@@ -1,7 +1,8 @@
 # vite-ts-admin-template
 
-This template should help get you started developing with Vue 3 in Vite.
+This template should help get you started developing with Vue3 in Vite.
 
+(ts + pinia + element-plus)
 ## Project Setup
 
 ```sh
