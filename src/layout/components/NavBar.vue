@@ -13,7 +13,7 @@
           <Fold v-else />
         </el-icon>
       </el-tooltip>
-      <Breadcrumb class="breadcrumb-container" />
+      <Breadcrumb class="breadcrumb-container hidden-xs-only" />
     </div>
     <UserInfo />
   </div>
@@ -56,6 +56,11 @@
       align-items: center;
       justify-items: center;
       margin-left: 10px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .hidden-xs-only {
+      display:none!important;
     }
   }
 </style>

@@ -55,12 +55,6 @@
   const handleResize = () => {
     if (!document.hidden) {
       isMobile.value = handleIsMobile()
-      // if (isMobile) {
-      //   //横向布局时如果是手机端访问那么改成纵向版
-      //   this.$store.dispatch('settings/changeLayout', 'vertical')
-      // } else {
-      //   this.$store.dispatch('settings/changeLayout', this.oldLayout)
-      // }
       appStore.toggleDevice(isMobile.value ? 'mobile' : 'desktop')
     }
   }
@@ -135,6 +129,10 @@
         &.hideSidebar .main-container {
           width: 100%;
           margin-left: 0 !important;
+        }
+        
+        &.hideSidebar .main-container .layout-navbar {
+          width: 100%;
         }
       }
     }
