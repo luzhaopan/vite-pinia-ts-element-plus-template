@@ -46,8 +46,6 @@
   const collapse = computed(() => appStore.getCollapse)
   const device = computed(() => appStore.getDevice)
 
-  // const sty = '210px'
-
   const handleFoldSideBar = () => {
     appStore.setCollapse(true)
   }
