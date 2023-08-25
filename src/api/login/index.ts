@@ -1,19 +1,19 @@
 import request from '@/utils/request'
+import type { UserType } from './types'
 
 // 用户登录
-export function loginApi(params: object) {
+export const loginApi = (data: UserType) => {
   return request({
     url: '/user/login',
     method: 'post',
-    data: params
+    data
   })
 }
 
 // 用户退出登录
-export function signOut(params: object) {
+export function signOut() {
   return request({
     url: '/user/signOut',
-    method: 'post',
-    data: params
+    method: 'post'
   })
 }
