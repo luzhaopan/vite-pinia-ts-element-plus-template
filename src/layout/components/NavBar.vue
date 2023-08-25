@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 
 export default defineComponent({

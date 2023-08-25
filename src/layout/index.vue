@@ -33,7 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onBeforeMount, onUnmounted } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import SideBar from './components/SideBar/index.vue'
 import NavBar from './components/NavBar.vue'

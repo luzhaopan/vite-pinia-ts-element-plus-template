@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-// const getCaches = reactive([])
 const getCaches = computed((): string[] => {
   // return tagsViewStore.getCachedViews
   return []

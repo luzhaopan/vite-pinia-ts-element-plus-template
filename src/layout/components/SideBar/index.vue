@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { useRouter } from 'vue-router'
 import Logo from './Logo.vue'
