@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', {
       userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
       device: 'desktop', // 桌面端，移动端 mobile
       breadcrumb: true, // 面包屑
-      collapse: false, // 折叠菜单
+      collapse: false // 折叠菜单
     }
   },
   getters: {

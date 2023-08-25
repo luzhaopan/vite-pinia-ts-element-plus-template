@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-
 const state = reactive<{
   title: string
   logo: string
