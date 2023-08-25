@@ -18,9 +18,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       vue(),
       vueJsx(),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        imports: ['vue'], // 自动导入内置的所有api，我们可以在项目中直接使用
+        include: [/\.[tj]sx?$/, /\.vue$/], // 匹配的文件，也就是哪些后缀的文件需要自动引入
+        resolvers: [ElementPlusResolver()]
       }),
       Components({
+        // 指定自动导入的组件位置，默认是 src/components
+        dirs: ['src/components'],
         resolvers: [ElementPlusResolver()],
       }),
       viteMockServe({

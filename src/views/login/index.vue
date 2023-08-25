@@ -28,7 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { setToken } from '@/utils/auth'
 import { useCache } from '@/hooks/useCache'
