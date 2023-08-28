@@ -18,8 +18,8 @@ for (let i = 0; i < 5; i++) {
     Mock.mock({
       id: '@increment(1)',
       author: '@cname',
-      title: '@title(5, 10)',
-      content: '@cword(12, 18)',
+      title: '@title(2, 3)',
+      content: '@cword(8, 20)',
       time: '@datetime'
     })
   )
@@ -27,7 +27,7 @@ for (let i = 0; i < 5; i++) {
 
 export default [
   {
-    url: '/analysis/total',
+    url: '/analysis/list',
     method: 'get',
     timeout,
     response: () => {
