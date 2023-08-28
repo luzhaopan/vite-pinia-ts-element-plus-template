@@ -10,3 +10,10 @@ export type ListData = {
   content: String
   time: string
 }
+
+export type TableData = {
+  id: string
+  date: string
+  name: string
+  address: string
+}
