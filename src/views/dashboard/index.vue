@@ -69,4 +69,8 @@ const getAllApi = async () => {
 getAllApi()
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-col {
+  margin-bottom: 20px;
+}
+</style>
