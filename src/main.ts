@@ -8,7 +8,7 @@ import '@/styles/index.scss'
 import App from './App.vue'
 import router from './router'
 import { setupStore } from '@/store'
-import '@/utils/permission'
+import '@/permission'
 
 const app = createApp(App)
 

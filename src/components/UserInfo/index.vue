@@ -21,6 +21,7 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { useCache } from '@/hooks/useCache'
+import { removeToken } from '@/utils/auth'
 
 const { replace } = useRouter()
 const { wsCache } = useCache()
@@ -35,6 +36,7 @@ const logOut = async () => {
   })
     .then(async () => {
       wsCache.clear()
+      removeToken()
       await replace('/login')
       ElMessage({
         type: 'success',
