@@ -20,7 +20,7 @@ export const constantRoutes = [
     path: '/echarts',
     name: 'Echarts',
     component: Layout,
-    meta: { title: 'Echarts', icon: 'Present' },
+    meta: { title: 'Echarts', icon: 'PieChart' },
     children: [
       {
         path: '/echarts/barEcharts',
@@ -33,6 +33,19 @@ export const constantRoutes = [
         name: 'RadarEcharts',
         component: () => import('@/views/echarts/radarEcharts/index.vue'),
         meta: { title: 'RadarEcharts' }
+      }
+    ]
+  },
+  {
+    path: '/timeline',
+    meta: { title: 'TimelineDemo', icon: 'Timer' },
+    component: Layout,
+    children: [
+      {
+        path: '/timeline/index',
+        name: 'Timeline',
+        component: () => import('@/views/timeline/index.vue'),
+        meta: { title: 'Timeline', icon: 'Timer' }
       }
     ]
   },
