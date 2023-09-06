@@ -74,10 +74,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       try {
         const res: any = await loginApi(ruleForm)
         if (res.code == 200) {
-          wsCache.set(appStore.getUserInfo, {
-            username: 'admin',
-            password: 'admin'
-          })
+          wsCache.set(appStore.getUserInfo, res.data)
           setToken('admin')
           // window.location.href = '/'
           router.push('/')
