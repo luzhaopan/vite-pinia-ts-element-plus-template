@@ -10,7 +10,7 @@
         @open="handleOpen"
         @close="handleClose"
       >
-        <MenuItem v-for="route in routes" :key="route.path" :data="route" />
+        <MenuItem v-for="route in routers" :key="route.path" :data="route" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -19,11 +19,12 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store/modules/app'
 import { useRouter } from 'vue-router'
+import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import Logo from './Logo.vue'
 import MenuItem from './MenuItem.vue'
 
-const route = useRouter()
-const routes = reactive(useRouter().options.routes)
+const appStore = useAppStore()
+const permissionStore = usePermissionStoreWithOut()
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -33,18 +34,13 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-const appStore = useAppStore()
+const routers = computed(() => permissionStore.getAddRouters)
 const collapse = computed(() => appStore.getCollapse)
 
 const activeMenu = computed(() => {
-  const { currentRoute } = route
+  const { currentRoute } = useRouter()
   return currentRoute.value.path
 })
 </script>
 
-<style>
-/* .el-menu-vertical-demo:not(.el-menu--collapse) {
-      width: 200px;
-      min-height: 400px;
-    } */
-</style>
+<style></style>

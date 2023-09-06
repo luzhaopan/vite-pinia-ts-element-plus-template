@@ -17,3 +17,12 @@ export function signOut() {
     method: 'post'
   })
 }
+
+// 路由获取
+export const getRouterApi = (data: any) => {
+  return request({
+    url: '/role/routerList',
+    method: 'get',
+    data
+  })
+}

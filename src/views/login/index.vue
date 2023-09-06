@@ -29,14 +29,18 @@
 
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus'
+import { useRouter } from 'vue-router'
 import { setToken } from '@/utils/auth'
-import { useCache } from '@/hooks/useCache'
+import { useCache } from '@/hooks/useStorage'
 import { useAppStore } from '@/store/modules/app'
-import { loginApi } from '@/api/login'
+import { usePermissionStore } from '@/store/modules/permission'
+import { loginApi, getRouterApi } from '@/api/login'
 import router from '@/router'
 
 const appStore = useAppStore()
-const { wsCache } = useCache()
+const permissionStore = usePermissionStore()
+const { currentRoute, addRoute, push } = useRouter()
+const { useStorage } = useCache()
 
 const loading = ref(false)
 
@@ -66,6 +70,18 @@ const rules = reactive<FormRules>({
   ]
 })
 
+const redirect = ref<string>('')
+
+watch(
+  () => currentRoute.value,
+  (route: any) => {
+    redirect.value = route?.query?.redirect as string
+  },
+  {
+    immediate: true
+  }
+)
+
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid, fields) => {
@@ -74,10 +90,15 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       try {
         const res: any = await loginApi(ruleForm)
         if (res.code == 200) {
-          wsCache.set(appStore.getUserInfo, res.data)
+          useStorage.set(appStore.getUserInfo, res.data)
           setToken('admin')
-          // window.location.href = '/'
-          router.push('/')
+          // 是否使用动态路由
+          if (appStore.getDynamicRouter) {
+            getRole()
+          } else {
+            // window.location.href = '/'
+            router.push('/')
+          }
         }
       } finally {
         loading.value = false
@@ -86,6 +107,27 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       console.log('error submit!', fields)
     }
   })
+}
+
+// 获取角色信息
+const getRole = async () => {
+  // admin - 模拟后端过滤菜单
+  const res = await getRouterApi({})
+  if (res) {
+    const routers = res.data || []
+
+    useStorage.set('roleRouters', routers)
+
+    await permissionStore.generateRoutes('admin', routers).catch(() => {})
+
+    permissionStore.getAddRouters.forEach((route) => {
+      addRoute(route as any) // 动态添加可访问路由表
+    })
+
+    permissionStore.setIsAddRouters(true)
+
+    push({ path: redirect.value || permissionStore.addRouters[0].path })
+  }
 }
 </script>
 

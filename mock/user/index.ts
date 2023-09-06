@@ -25,6 +25,57 @@ const List: {
   }
 ]
 
+const routerList = [
+  {
+    path: '/',
+    component: '#',
+    meta: { title: 'Dashboard', icon: 'Odometer' },
+    redirect: '/dashboard',
+    children: [
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: 'views/dashboard/index',
+        meta: { title: 'Dashboard', icon: 'Odometer' }
+      }
+    ]
+  },
+  {
+    path: '/echarts',
+    name: 'Echarts',
+    component: '#',
+    meta: { title: 'Echarts', icon: 'PieChart' },
+    children: [
+      {
+        path: '/echarts/barEcharts',
+        name: 'BarEcharts',
+        component: 'views/echarts/barEcharts',
+        meta: { title: 'BarEcharts' }
+      },
+      {
+        path: '/echarts/radarEcharts',
+        name: 'RadarEcharts',
+        component: 'views/echarts/radarEcharts',
+        meta: { title: 'RadarEcharts' }
+      }
+    ]
+  },
+  {
+    path: '/timeline',
+    component: '#',
+    meta: { title: 'TimelineDemo' },
+    redirect: '/timeline/index',
+    children: [
+      {
+        path: '/timeline/index',
+        name: 'Timeline',
+        component: 'views/timeline/index',
+        meta: { title: 'Timeline', icon: 'Timer' }
+      }
+    ]
+  }
+]
+
 export default [
   // 登录接口
   {
@@ -65,5 +116,17 @@ export default [
         data: null
       }
     }
-  }
+  },
+  {
+    url: '/role/routerList',
+    method: 'get',
+    timeout,
+    response: () => {
+      // const { roleName } = query
+      return {
+        code: 200,
+        data: routerList
+      }
+    }
+  },
 ] as MockMethod[]

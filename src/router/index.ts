@@ -16,39 +16,26 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/echarts',
-    name: 'Echarts',
-    component: Layout,
-    meta: { title: 'Echarts', icon: 'PieChart' },
-    children: [
-      {
-        path: '/echarts/barEcharts',
-        name: 'BarEcharts',
-        component: () => import('@/views/echarts/barEcharts/index.vue'),
-        meta: { title: 'BarEcharts' }
-      },
-      {
-        path: '/echarts/radarEcharts',
-        name: 'RadarEcharts',
-        component: () => import('@/views/echarts/radarEcharts/index.vue'),
-        meta: { title: 'RadarEcharts' }
-      }
-    ]
-  },
-  {
-    path: '/timeline',
-    meta: { title: 'TimelineDemo', icon: 'Timer' },
-    component: Layout,
-    children: [
-      {
-        path: '/timeline/index',
-        name: 'Timeline',
-        component: () => import('@/views/timeline/index.vue'),
-        meta: { title: 'Timeline', icon: 'Timer' }
-      }
-    ]
-  },
+  // {
+  //   path: '/echarts',
+  //   name: 'Echarts',
+  //   component: Layout,
+  //   meta: { title: 'Echarts', icon: 'PieChart' },
+  //   children: [
+  //     {
+  //       path: '/echarts/barEcharts',
+  //       name: 'BarEcharts',
+  //       component: () => import('@/views/echarts/barEcharts.vue'),
+  //       meta: { title: 'BarEcharts' }
+  //     },
+  //     {
+  //       path: '/echarts/radarEcharts',
+  //       name: 'RadarEcharts',
+  //       component: () => import('@/views/echarts/radarEcharts.vue'),
+  //       meta: { title: 'RadarEcharts' }
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     name: 'login',
@@ -58,39 +45,6 @@ export const constantRoutes = [
 ]
 
 export const asyncRoutes = [
-  
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/list',
-  //   name: 'Example',
-  //   meta: {
-  //     title: 'Example',
-  //     icon: 'el-icon-s-help'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'create',
-  //       component: () => import('@/views/example/create'),
-  //       name: 'CreateArticle',
-  //       meta: { title: 'Create Article', icon: 'edit' }
-  //     },
-  //     {
-  //       path: 'edit/:id(\\d+)',
-  //       component: () => import('@/views/example/edit'),
-  //       name: 'EditArticle',
-  //       meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: 'list',
-  //       component: () => import('@/views/example/list'),
-  //       name: 'ArticleList',
-  //       meta: { title: 'Article List', icon: 'list' }
-  //     }
-  //   ]
-  // },
-
   {
     path: '/timeline',
     component: Layout,
@@ -105,10 +59,9 @@ export const asyncRoutes = [
   }
 ]
 
-
-
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
+  strict: true,
   routes: constantRoutes
 })
 
