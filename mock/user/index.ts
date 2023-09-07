@@ -30,10 +30,10 @@ const routerList = [
     path: '/',
     component: '#',
     meta: { title: 'Dashboard', icon: 'Odometer' },
-    redirect: '/dashboard',
+    redirect: '/dashboard/index',
     children: [
       {
-        path: '/dashboard',
+        path: '/dashboard/index',
         name: 'Dashboard',
         component: 'views/dashboard/index',
         meta: { title: 'Dashboard', icon: 'Odometer' }

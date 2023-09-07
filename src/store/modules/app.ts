@@ -16,7 +16,7 @@ export const useAppStore = defineStore('app', {
       device: 'desktop', // 桌面端，移动端 mobile
       breadcrumb: true, // 面包屑
       collapse: false, // 折叠菜单
-      dynamicRouter:  true, // 是否动态路由
+      dynamicRouter:  false // 是否动态路由
     }
   },
   getters: {

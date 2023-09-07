@@ -30,6 +30,7 @@ router.beforeEach(async (to, from, next) => {
         next()
         return
       }
+     
       // 开发者可根据实际情况进行修改
       const roleRouters = useStorage.get('roleRouters') || []
 
@@ -49,6 +50,7 @@ router.beforeEach(async (to, from, next) => {
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
       // 是router.addRoute之后next()可能会失效，因为可能next()的时候路由并没有完全add完成,添加动态路由表完毕之后设置isAddRouters = true，然后路由跳转之前先去判断isAddRouters = true，路由放行；否则再次动态添加路由
       permissionStore.setIsAddRouters(true)
+
       next(nextData)
     }
   } else {

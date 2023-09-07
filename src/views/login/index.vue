@@ -29,13 +29,13 @@
 
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { useRouter, type RouteRecordRaw } from 'vue-router'
 import { setToken } from '@/utils/auth'
 import { useCache } from '@/hooks/useStorage'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { loginApi, getRouterApi } from '@/api/login'
-import router from '@/router'
+// import router from '@/router'
 
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
@@ -96,8 +96,14 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           if (appStore.getDynamicRouter) {
             getRole()
           } else {
-            // window.location.href = '/'
-            router.push('/')
+            await permissionStore.generateRoutes('none').catch(() => {})
+            permissionStore.getAddRouters.forEach((route) => {
+              addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
+            })
+
+            permissionStore.setIsAddRouters(true)
+            push({ path: redirect.value || permissionStore.addRouters[0].path })
+            // push({ path: '/' })
           }
         }
       } finally {
@@ -115,17 +121,14 @@ const getRole = async () => {
   const res = await getRouterApi({})
   if (res) {
     const routers = res.data || []
-
     useStorage.set('roleRouters', routers)
 
     await permissionStore.generateRoutes('admin', routers).catch(() => {})
-
     permissionStore.getAddRouters.forEach((route) => {
-      addRoute(route as any) // 动态添加可访问路由表
+      addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
     })
 
     permissionStore.setIsAddRouters(true)
-
     push({ path: redirect.value || permissionStore.addRouters[0].path })
   }
 }

@@ -33,7 +33,7 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-
+// const routers = reactive(useRouter().options.routes)
 const routers = computed(() => permissionStore.getAddRouters)
 const collapse = computed(() => appStore.getCollapse)
 
