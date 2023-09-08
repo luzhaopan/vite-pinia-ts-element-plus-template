@@ -33,6 +33,7 @@ export const usePermissionStore = defineStore('permission', {
           // 模拟后端过滤菜单
           routerMap = generateRoutesFn2(routers as any[])
         } else if(type === 'visitor') {
+          // 模拟前端静态路由表过滤
           routerMap = generateRoutesFn1(cloneDeep(asyncRoutes), [type])
         } else {
           // 直接读取静态路由表
