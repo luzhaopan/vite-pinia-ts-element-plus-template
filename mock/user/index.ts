@@ -7,21 +7,18 @@ const List: {
   password: string
   role: string
   roleId: string
-  permissions: string | string[]
 }[] = [
   {
     username: 'admin',
     password: 'admin',
     role: 'admin',
-    roleId: '1',
-    permissions: ['*.*.*']
+    roleId: '1'
   },
   {
-    username: 'test',
-    password: 'test',
-    role: 'test',
-    roleId: '2',
-    permissions: ['example:dialog:create', 'example:dialog:delete']
+    username: 'visitor',
+    password: 'visitor',
+    role: 'visitor',
+    roleId: '2'
   }
 ]
 

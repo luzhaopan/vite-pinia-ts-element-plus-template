@@ -1,5 +1,5 @@
 <template>
-  <template v-if="props.data.hidden"></template>
+  <template v-if="props.data.meta.hidden"></template>
 
   <el-menu-item
     v-else-if="

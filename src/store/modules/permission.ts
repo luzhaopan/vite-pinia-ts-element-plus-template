@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { asyncRoutes, constantRoutes } from '@/router'
-import { generateRoutesFn2 } from '@/utils/authority'
+import { generateRoutesFn1, generateRoutesFn2 } from '@/utils/authority'
 import { store } from '../index'
 import { cloneDeep } from 'lodash-es'
 
@@ -24,7 +24,7 @@ export const usePermissionStore = defineStore('permission', {
   },
   actions: {
     generateRoutes(
-      type: 'admin' | 'test' | 'none',
+      type: 'admin' | 'visitor' | 'none',
       routers?: any[] | string[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
@@ -32,6 +32,8 @@ export const usePermissionStore = defineStore('permission', {
         if (type === 'admin') {
           // 模拟后端过滤菜单
           routerMap = generateRoutesFn2(routers as any[])
+        } else if(type === 'visitor') {
+          routerMap = generateRoutesFn1(cloneDeep(asyncRoutes), [type])
         } else {
           // 直接读取静态路由表
           routerMap = cloneDeep(asyncRoutes)

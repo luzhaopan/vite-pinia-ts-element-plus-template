@@ -34,11 +34,18 @@ router.beforeEach(async (to, from, next) => {
       // 开发者可根据实际情况进行修改
       const roleRouters = useStorage.get('roleRouters') || []
 
+      const userInfo = useStorage.get('userInfo')
+
       // 是否使用动态路由
       if (appStore.getDynamicRouter) {
         await permissionStore.generateRoutes('admin', roleRouters as any[])
       } else {
-        await permissionStore.generateRoutes('none')
+        if(userInfo.role === 'admin'){
+          await permissionStore.generateRoutes('none')
+        } else {
+          // 前端过滤
+          await permissionStore.generateRoutes('visitor')
+        }
       }
       
       permissionStore.getAddRouters.forEach((route) => {

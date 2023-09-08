@@ -96,14 +96,18 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           if (appStore.getDynamicRouter) {
             getRole()
           } else {
-            await permissionStore.generateRoutes('none').catch(() => {})
+            if (res.data.role === 'admin') {
+              await permissionStore.generateRoutes('none').catch(() => {})
+            } else {
+              await permissionStore.generateRoutes('visitor').catch(() => {})
+            }
+
             permissionStore.getAddRouters.forEach((route) => {
               addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
             })
 
             permissionStore.setIsAddRouters(true)
             push({ path: redirect.value || permissionStore.addRouters[0].path })
-            // push({ path: '/' })
           }
         }
       } finally {

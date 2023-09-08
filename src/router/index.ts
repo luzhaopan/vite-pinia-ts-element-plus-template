@@ -7,22 +7,13 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     name: 'Root',
-    hidden: true,
-    meta: { title: 'Dashboard', icon: 'Odometer' },
-    redirect: '/dashboard/index',
-    // children: [
-    //   {
-    //     path: '/dashboard',
-    //     name: 'Dashboard',
-    //     component: () => import('@/views/dashboard/index.vue'),
-    //     meta: { title: 'Dashboard', icon: 'Odometer' }
-    //   }
-    // ]
+    meta: { title: 'Dashboard', icon: 'Odometer', hidden: true, },
+    redirect: '/dashboard/index'
   },
   {
     path: '/login',
     name: 'login',
-    hidden: true,
+    meta: { title: 'Login', hidden: true, },
     component: () => import('@/views/login/index.vue')
   }
 ]
@@ -46,19 +37,26 @@ export const asyncRoutes = [
     path: '/echarts',
     name: 'Echarts',
     component: Layout,
-    meta: { title: 'Echarts', icon: 'PieChart' },
+    meta: { title: 'Echarts', icon: 'PieChart', roles: ['admin', 'visitor'] },
     children: [
       {
         path: '/echarts/barEcharts',
         name: 'BarEcharts',
         component: () => import('@/views/echarts/barEcharts.vue'),
-        meta: { title: 'BarEcharts' }
+        meta: { title: 'BarEcharts', roles: ['visitor'] }
+      },
+      {
+        path: '/echarts/radarEcharts',
+        name: 'RadarEcharts',
+        component: () => import('@/views/echarts/radarEcharts.vue'),
+        meta: { title: 'RadarEcharts', roles: ['admin'] }
       }
     ]
   },
   {
     path: '/timeline',
     component: Layout,
+    meta: {},
     children: [
       {
         path: '/timeline/index',

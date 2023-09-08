@@ -1,4 +1,3 @@
-
 // vite使用动态路由，在动态导入组件的时候，需要注意不能将页面路径直接作为component导入，虽然开发环境一般是能正常加载，但是打包到生产环境的时候就会出错，所以我们需要添加以下代码：
 const modules = import.meta.glob('../views/**/*.vue')
 
@@ -12,6 +11,33 @@ export const getParentLayout = () => {
         name: 'ParentLayout'
       })
     })
+}
+
+const hasPermission = (roles: any, route: any) => {
+  if (route.meta && route.meta.roles) {
+    return roles.some((role: any) => route.meta.roles.includes(role))
+  } else {
+    return true
+  }
+}
+
+// 前端控制路由生成
+export const generateRoutesFn1 = (
+  routes: any[],
+  roles: string[]
+): any[] => {
+  const res: any[] = []
+  routes.forEach(route => {
+    const tmp = { ...route }
+    if (hasPermission(roles, tmp)) {
+      if (tmp.children) {
+        tmp.children = generateRoutesFn1(tmp.children, roles)
+      }
+      res.push(tmp)
+    }
+  })
+  
+  return res
 }
 
 // 后端控制路由生成
