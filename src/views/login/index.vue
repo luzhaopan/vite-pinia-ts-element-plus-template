@@ -35,7 +35,6 @@ import { useCache } from '@/hooks/useStorage'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { loginApi, getRouterApi } from '@/api/login'
-// import router from '@/router'
 
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
