@@ -60,8 +60,8 @@ const hasOneShowingChild = (children = [], parent = {}) => {
     }
   })
 
-  // When there is only one child router and no name, the child router is displayed by default
-  if (showingChildren.length === 1 && !(parent as any).name) {
+  // When there is only one child router and alwaysShow is true, the child router is displayed by default
+  if (showingChildren.length === 1 && (parent as any).meta && !(parent as any).meta.alwaysShow) {
     return true
   }
 

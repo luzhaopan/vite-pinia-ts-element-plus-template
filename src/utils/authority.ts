@@ -13,9 +13,9 @@ export const getParentLayout = () => {
     })
 }
 
-const hasPermission = (roles: any, route: any) => {
+const hasPermission = (roles: string[], route: AppRouteRecordRaw) => {
   if (route.meta && route.meta.roles) {
-    return roles.some((role: any) => route.meta.roles.includes(role))
+    return roles.some((role: string) => route.meta.roles.includes(role))
   } else {
     return true
   }
@@ -23,10 +23,10 @@ const hasPermission = (roles: any, route: any) => {
 
 // 前端控制路由生成
 export const generateRoutesFn1 = (
-  routes: any[],
+  routes: AppRouteRecordRaw[],
   roles: string[]
-): any[] => {
-  const res: any[] = []
+): AppRouteRecordRaw[] => {
+  const res: AppRouteRecordRaw[] = []
   routes.forEach(route => {
     const tmp = { ...route }
     if (hasPermission(roles, tmp)) {
@@ -41,11 +41,11 @@ export const generateRoutesFn1 = (
 }
 
 // 后端控制路由生成
-export const generateRoutesFn2 = (routes: any[]): any[] => {
-  const res: any[] = []
+export const generateRoutesFn2 = (routes: AppRouteRecordRaw[]): AppRouteRecordRaw[] => {
+  const res: AppRouteRecordRaw[] = []
 
   for (const route of routes) {
-    const data: any = {
+    const data: AppRouteRecordRaw = {
       path: route.path,
       name: route.name,
       redirect: route.redirect,
@@ -67,7 +67,7 @@ export const generateRoutesFn2 = (routes: any[]): any[] => {
     if (route.children) {
       data.children = generateRoutesFn2(route.children)
     }
-    res.push(data as any)
+    res.push(data as AppRouteRecordRaw)
   }
   return res
 }

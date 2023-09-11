@@ -1,6 +1,7 @@
-import router from '@/router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import type { RouteRecordRaw } from 'vue-router'
+import router from '@/router'
 import { useCache } from '@/hooks/useStorage'
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
@@ -38,7 +39,7 @@ router.beforeEach(async (to, from, next) => {
 
       // 是否使用动态路由
       if (appStore.getDynamicRouter) {
-        await permissionStore.generateRoutes('admin', roleRouters as any[])
+        await permissionStore.generateRoutes('admin', roleRouters as AppRouteRecordRaw[])
       } else {
         if(userInfo.role === 'admin'){
           await permissionStore.generateRoutes('none')
@@ -49,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
       }
       
       permissionStore.getAddRouters.forEach((route) => {
-        router.addRoute(route) // 动态添加可访问路由表
+        router.addRoute(route as unknown as RouteRecordRaw) // 动态添加可访问路由表
       })
       
       const redirectPath = from.query.redirect || to.path

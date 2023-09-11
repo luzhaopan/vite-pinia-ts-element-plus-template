@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { Layout } from '@/utils/authority'
 
-export const constantRoutes = [
+export const constantRoutes: AppRouteRecordRaw[]  = [
   {
     path: '/',
     component: Layout,
@@ -18,18 +18,19 @@ export const constantRoutes = [
   }
 ]
 
-export const asyncRoutes = [
+export const asyncRoutes: AppRouteRecordRaw[]  = [
   {
     path: '/dashboard',
+    name: 'Dashboard',
     component: Layout,
-    meta: { title: 'Dashboard', icon: 'Odometer' },
+    meta: { icon: 'Odometer' },
     redirect: '/dashboard/index',
     children: [
       {
         path: '/dashboard/index',
-        name: 'Dashboard',
+        name: 'Analysis',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: 'Dashboard', icon: 'Odometer' }
+        meta: { title: 'Analysis', icon: 'Odometer' }
       }
     ]
   },
@@ -55,6 +56,7 @@ export const asyncRoutes = [
   },
   {
     path: '/timeline',
+    name: 'TimelineDemo',
     component: Layout,
     meta: {},
     children: [

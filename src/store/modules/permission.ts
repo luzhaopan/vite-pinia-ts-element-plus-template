@@ -5,7 +5,7 @@ import { store } from '../index'
 import { cloneDeep } from 'lodash-es'
 
 export interface PermissionState {
-  addRouters: any[]
+  addRouters: AppRouteRecordRaw[]
   isAddRouters: boolean
 }
 
@@ -15,7 +15,7 @@ export const usePermissionStore = defineStore('permission', {
     isAddRouters: false
   }),
   getters: {
-    getAddRouters(): any[] {
+    getAddRouters(): AppRouteRecordRaw[] {
       return this.addRouters
     },
     getIsAddRouters(): boolean {
@@ -25,13 +25,13 @@ export const usePermissionStore = defineStore('permission', {
   actions: {
     generateRoutes(
       type: 'admin' | 'visitor' | 'none',
-      routers?: any[] | string[]
+      routers?: AppRouteRecordRaw[] | string[]
     ): Promise<unknown> {
       return new Promise<void>((resolve) => {
-        let routerMap: any[] = []
+        let routerMap: AppRouteRecordRaw[] = []
         if (type === 'admin') {
           // 模拟后端过滤菜单
-          routerMap = generateRoutesFn2(routers as any[])
+          routerMap = generateRoutesFn2(routers as AppRouteRecordRaw[])
         } else if(type === 'visitor') {
           // 模拟前端静态路由表过滤
           routerMap = generateRoutesFn1(cloneDeep(asyncRoutes), [type])
