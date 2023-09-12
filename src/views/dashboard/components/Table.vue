@@ -1,5 +1,10 @@
 <template>
-  <el-table :data="props.data" style="width: 100%" :row-class-name="tableRowClassName">
+  <el-table
+    :data="props.data"
+    style="width: 100%"
+    max-height="300"
+    :row-class-name="tableRowClassName"
+  >
     <el-table-column prop="date" label="Date" />
     <el-table-column prop="name" label="Name" />
     <el-table-column prop="address" label="Address" />
@@ -34,9 +39,9 @@ const props = defineProps({
 </script>
 
 <style>
-.el-table .warning-row {
+/* .el-table .warning-row {
   --el-table-tr-bg-color: var(--el-color-warning-light-9);
-}
+} */
 .el-table .success-row {
   --el-table-tr-bg-color: var(--el-color-success-light-9);
 }

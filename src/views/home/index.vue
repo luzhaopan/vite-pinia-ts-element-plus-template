@@ -11,7 +11,7 @@
         <div class="content-title">
           Hello，nice to meet u!<span class="welcome-text">，good luck!</span>
         </div>
-        <div>为维护世界和平，我们一起努力</div>
+        <div>为了维护世界和平，让我们一起努力吧！</div>
       </div>
     </div>
   </div>

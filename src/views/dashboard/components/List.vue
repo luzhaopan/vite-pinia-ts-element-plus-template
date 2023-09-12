@@ -1,14 +1,23 @@
 <template>
-  <div v-for="val in props.data" :key="val.id">
-    <div class="list">
-      <div class="title">{{ val.title }}</div>
-      <div class="subtitle">
-        <div>{{ val.author }}</div>
-        <div>{{ val.time }}</div>
+  <el-card class="box-card" shadow="hover">
+    <template #header>
+      <div class="card-header">
+        <span>动态</span>
       </div>
-      <div class="content">{{ val.content }}</div>
+    </template>
+    <div class="page-list">
+      <div class="item" v-for="val in props.data" :key="val.id">
+        <img src="@/assets/avatar.webp" class="avatar" />
+        <div>
+          <div class="title">{{ val.title }}</div>
+          <div class="subtitle">
+            <div>{{ val.author }}</div>
+            <div>{{ val.time }}</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </el-card>
 </template>
 <script lang="ts" setup>
 import { ListData } from '@/api/dashboard/types'
@@ -21,13 +30,19 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.list {
-  margin: 5px 0;
-  border: 1px solid $base-border-color;
-  padding: 10px;
+.page-list {
+  max-height: 275px;
+  overflow: auto;
+}
+.item {
+  margin: 2px 0;
+  border-bottom: 1px solid $base-border-color;
+  padding: 8px;
+  display: flex;
 }
 .title {
-  font-size: 18px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
   font-weight: 600;
 }
 .subtitle {
@@ -43,5 +58,13 @@ const props = defineProps({
 .content {
   font-size: 16px;
   padding: 10px 0;
+}
+
+.avatar {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 42px;
+  margin-right: 10px;
 }
 </style>
