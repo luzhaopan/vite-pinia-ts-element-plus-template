@@ -11,6 +11,7 @@
     </div>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item divided @click="toGithub">github</el-dropdown-item>
         <el-dropdown-item divided @click="logOut">Log Out</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -26,7 +27,11 @@ import { removeToken } from '@/utils/auth'
 const { replace } = useRouter()
 const { useStorage } = useCache()
 
-const username = 'luis'
+const username = 'Louis'
+
+const toGithub = () => {
+  window.open('https://github.com/luzhaopan/vite-pinia-ts-element-plus-template')
+}
 
 const logOut = async () => {
   ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {

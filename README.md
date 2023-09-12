@@ -2,7 +2,7 @@
 
 This template should help get you started developing with Vue3 in Vite.
 
-(ts + pinia + element-plus) Base Template
+Basic templates based on (vite + ts + pinia + element-plus + ECharts)
 ## Project Setup
 
 ```sh
