@@ -7,8 +7,8 @@ export const constantRoutes: AppRouteRecordRaw[]  = [
     path: '/',
     component: Layout,
     name: 'Root',
-    meta: { title: 'Dashboard', icon: 'Odometer', hidden: true, },
-    redirect: '/dashboard/index'
+    meta: { title: 'Home', icon: 'House', hidden: true, },
+    redirect: '/home/index'
   },
   {
     path: '/login',
@@ -19,6 +19,21 @@ export const constantRoutes: AppRouteRecordRaw[]  = [
 ]
 
 export const asyncRoutes: AppRouteRecordRaw[]  = [
+  {
+    path: '/home',
+    name: 'Home',
+    component: Layout,
+    meta: { icon: 'Home' },
+    redirect: '/Home/index',
+    children: [
+      {
+        path: '/home/index',
+        name: 'Home',
+        component: () => import('@/views/home/index.vue'),
+        meta: { title: 'Home', icon: 'House' }
+      }
+    ]
+  },
   {
     path: '/dashboard',
     name: 'Dashboard',
