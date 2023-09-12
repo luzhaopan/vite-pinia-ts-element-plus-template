@@ -1,16 +1,24 @@
 <template>
   <ElRow :gutter="20" justify="space-between">
-    <ElCol :span="24">
+    <ElCol :span="24"> 1111 </ElCol>
+    <ElCol :xl="10" :lg="10" :md="24" :sm="24" :xs="24">
       <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="5">
           <Table :data="state.tableData" />
         </ElSkeleton>
       </ElCard>
     </ElCol>
-    <ElCol :span="24">
+    <ElCol :xl="14" :lg="14" :md="24" :sm="24" :xs="24">
       <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="5">
           <List :data="state.listData" />
+        </ElSkeleton>
+      </ElCard>
+    </ElCol>
+    <ElCol :span="24">
+      <ElCard shadow="hover">
+        <ElSkeleton :loading="loading" animated :rows="10">
+          <StatisticalChart />
         </ElSkeleton>
       </ElCard>
     </ElCol>
@@ -20,6 +28,7 @@
 <script setup lang="ts">
 import Table from './components/Table.vue'
 import List from './components/List.vue'
+import StatisticalChart from './components/StatisticalChart.vue'
 import { getTableApi, getListApi } from '@/api/dashboard'
 import { ListData, TableData } from '@/api/dashboard/types'
 

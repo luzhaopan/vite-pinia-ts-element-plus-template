@@ -17,3 +17,12 @@ export const getListApi = (params: ListParamType) => {
   })
 }
 
+export const getGeometryListApi = (params?: any) => {
+  return request({
+    url: '/geometry/list',
+    method: 'get',
+    data: params
+  })
+}
+
+

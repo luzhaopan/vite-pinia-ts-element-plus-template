@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
-
+import { geometryData } from './geometry'
 interface ListProps {
   id: string
   author: string
@@ -64,6 +64,17 @@ export default [
       return {
         code: 200,
         data: List
+      }
+    }
+  },
+  {
+    url: '/geometry/list',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        code: 200,
+        data: geometryData
       }
     }
   }
