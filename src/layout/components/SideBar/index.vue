@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useAppStore } from '@/store/modules/app'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/store/modules/app'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import Logo from './Logo.vue'
 import MenuItem from './MenuItem.vue'

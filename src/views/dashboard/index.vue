@@ -31,7 +31,7 @@ import StatisticalChart from './components/StatisticalChart.vue'
 import { getTableApi, getListApi } from '@/api/dashboard'
 import { ListData, TableData } from '@/api/dashboard/types'
 
-const loading = ref(true)
+const loading = ref<boolean>(true)
 
 const state = reactive<{
   tableData: TableData[]

@@ -198,7 +198,7 @@ onMounted(() => {
 })
 
 // 初始化日历数据
-const initData = (cur) => {
+const initData = (cur: any) => {
   let date
   if (cur) {
     date = new Date(cur)
@@ -235,7 +235,7 @@ const initData = (cur) => {
   for (let j = 1; j < 35 - state.currentWeek; j++) {
     const d3 = new Date(target)
     d3.setDate(d3.getDate() + j)
-    let map
+    let map: any
     if (j === 2 || j === 5 || j === 11) {
       map = {
         startTime: '09:30:00',
@@ -268,7 +268,7 @@ const yearSelect = () => {
 }
 
 // 月分选择
-const selectedMonth = (m) => {
+const selectedMonth = (m: any) => {
   state.currentMonth = m
   state.monthList.forEach((item) => {
     if (item.value === m) {
@@ -281,42 +281,42 @@ const selectedMonth = (m) => {
 }
 
 // 获取日期
-const getDays = (year, month) => {
+const getDays = (year: any, month: any) => {
   const d = new Date(formatDate(year, month, 1))
   initData(formatDate(d.getFullYear(), d.getMonth() + 1, 1))
 }
 
 // 格式化日期
-const formatDate = (year, month, day) => {
+const formatDate = (year: any, month: any, day: any) => {
   if (month < 10) month = '0' + month
   if (day < 10) day = '0' + day
   return year ? year + '-' + month + '-' + day : month + '-' + day
 }
 
 // 判断是否周末
-const isWeekend = (date) => {
+const isWeekend = (date: any) => {
   return date.getDay() === 6 || date.getDay() === 0
 }
 
 // 判断节假日
-const isFestival = (item) => {
+const isFestival = (item: any) => {
   const date = formatDate(item.getFullYear(), item.getMonth() + 1, item.getDate())
   return festivalData[state.currentYear].includes(date)
 }
 
 // 判断是否是未来的日期
-const compareDate = (date) => {
+const compareDate = (date: any) => {
   const now = new Date().valueOf()
   const cur = new Date(date).valueOf()
   return now > cur
 }
 
 // 对比时间是否迟到
-const timeCompare = (time1, time2 = '09:00:00') => {
+const timeCompare = (time1: any, time2 = '09:00:00') => {
   return time1 ? timeToSec(time1) > timeToSec(time2) : true
 }
 
-const timeToSec = (time) => {
+const timeToSec = (time: any) => {
   const hour = time.split(':')[0]
   const min = time.split(':')[1]
   const sec = time.split(':')[2]

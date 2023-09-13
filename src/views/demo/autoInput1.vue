@@ -141,15 +141,15 @@ const state = reactive({
   blur: null
 })
 
-const handleChange = (val) => {
+const handleChange = (val: any) => {
   state.currentVal = val
 }
 
-const _onFocus = (e) => {
+const _onFocus = (e: any) => {
   state.focus = e.type
 }
 
-const _onBlur = (e) => {
+const _onBlur = (e: any) => {
   state.blur = e.type
 }
 </script>

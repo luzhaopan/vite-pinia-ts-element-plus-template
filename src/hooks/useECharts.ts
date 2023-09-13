@@ -1,10 +1,9 @@
+import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
 import type { Ref } from 'vue'
 import { tryOnUnmounted, useDebounceFn } from '@vueuse/core'
-import { unref, nextTick, computed, ref } from 'vue'
 import { useEventListener } from './useEventListener'
 import { useBreakpoint } from './useBreakpoint'
-import * as echarts from 'echarts'
 
 // eslint-disable-next-line no-unused-vars
 type Fn = (...arg: any) => any

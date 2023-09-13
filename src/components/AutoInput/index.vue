@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 /**
  * AutoInput 输入框
  * @property {String, Number}	value	输入内容
@@ -38,9 +38,12 @@
 
 const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur'])
 
-const inputBox = ref(null)
+const inputBox = ref<any>(null)
 
-const state = reactive({
+const state = reactive<{
+  content: any
+  left: any
+}>({
   content: '',
   left: 100
 })
@@ -95,7 +98,7 @@ const left = computed(() => {
 })
 
 // 输入框输入触发
-const handleInputEvent = (e) => {
+const handleInputEvent = (e: any) => {
   const value = e.target.innerHTML
   if (value.length >= props.maxlength && props.maxlength !== -1) {
     state.content = value.substring(0, props.maxlength)
@@ -106,17 +109,17 @@ const handleInputEvent = (e) => {
   }
   emit('update:modelValue', state.content)
   emit('change', state.content)
-  const dom = inputBox.value
+  const dom: any = inputBox.value
   state.left = dom && dom.offsetWidth
 }
 
 // 输入框获得焦点
-const onFocus = (event) => {
+const onFocus = (event: any) => {
   emit('focus', event)
 }
 
 // 输入框失去焦点
-const onBlur = (event) => {
+const onBlur = (event: any) => {
   emit('blur', event)
 }
 
@@ -126,7 +129,7 @@ const cleanContent = () => {
 }
 
 // 输入框赋值处理
-const handleInputContent = (val) => {
+const handleInputContent = (val: any) => {
   state.content = val
   inputBox.value.innerHTML = val
   emit('update:modelValue', val)
@@ -135,8 +138,8 @@ const handleInputContent = (val) => {
 // 文本输入框聚焦，焦点在最后位置
 const textFocus = () => {
   inputBox.value.focus()
-  document.execCommand('selectAll', false, null)
-  document.getSelection().collapseToEnd()
+  document.execCommand('selectAll', false)
+  document.getSelection()!.collapseToEnd()
 }
 </script>
 

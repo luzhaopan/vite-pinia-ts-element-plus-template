@@ -14,15 +14,37 @@
         <el-input v-model="ruleForm.username" />
       </el-form-item>
       <el-form-item label="" prop="password">
-        <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off" />
+        <el-input
+          type="password"
+          v-model.trim="ruleForm.password"
+          autocomplete="off"
+          show-password
+        />
       </el-form-item>
       <el-form-item label="" prop="remember">
-        <el-switch v-model="ruleForm.remember" />
+        <el-checkbox v-model="ruleForm.remember" label="记住我" size="small" />
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm(ruleFormRef)"> login </el-button>
+        <el-button
+          style="width: 100%"
+          type="primary"
+          @click="submitForm(ruleFormRef)"
+          :loading="loading"
+        >
+          login
+        </el-button>
       </el-form-item>
+      <div>
+        <div class="tips">
+          <span>账号：admin</span>
+          <span>密码：admin</span>
+        </div>
+        <div class="tips">
+          <span>账号：visitor</span>
+          <span>密码：visitor</span>
+        </div>
+      </div>
     </el-form>
   </div>
 </template>
@@ -93,6 +115,23 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         if (res.code == 200) {
           useStorage.set(appStore.getUserInfo, res.data)
           setToken('admin')
+
+          const hour = new Date().getHours()
+          const thisTime =
+            hour < 8
+              ? '早上好'
+              : hour <= 11
+              ? '上午好'
+              : hour <= 13
+              ? '中午好'
+              : hour < 18
+              ? '下午好'
+              : '晚上好'
+          ElNotification({
+            title: thisTime,
+            message: 'welcome',
+            type: 'success'
+          })
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
             getRole()
@@ -164,6 +203,17 @@ const getRole = async () => {
     color: #ff940a;
     font-size: 16px;
     font-weight: 600;
+  }
+
+  ::v-deep(.el-checkbox__label) {
+    color: #fff;
+  }
+
+  .tips {
+    color: #fff;
+    span {
+      margin-right: 10px;
+    }
   }
 }
 </style>

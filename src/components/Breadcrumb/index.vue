@@ -19,26 +19,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
 import { useRouter, type RouteLocationNormalizedLoaded } from 'vue-router'
 
 const { currentRoute } = useRouter()
 
-const breadcrumbItems = ref<any[]>([])
+const breadcrumbItems: any = ref<AppRouteRecordRaw[]>([])
 
 const getBreadcrumb = (route: RouteLocationNormalizedLoaded) => {
-  const list = route.matched.filter((item) => item.name !== 'dashboard')
+  const list = route.matched.filter((item) => item.children.length !== 1)
   breadcrumbItems.value = list.map((item) => {
     return item
   })
   // console.log('breadcrumbItems', breadcrumbItems.value)
 }
 
-const getPath = (val: any) => {
+const getPath = (val: AppRouteRecordRaw) => {
   if (val.children && val.children.length) {
     getPath(val.children[0])
   } else {
-    // console.log(val.path)
     return val.path
   }
 }

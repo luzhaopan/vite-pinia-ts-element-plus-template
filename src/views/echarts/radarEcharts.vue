@@ -32,8 +32,7 @@ const options = {
     {
       name: '预算 vs 开销（Budget vs spending）',
       type: 'radar',
-      // areaStyle: {normal: {}},
-      itemStyle: { normal: { areaStyle: { type: 'default' } } },
+      itemStyle: { areaStyle: { type: 'default' } },
       data: [
         {
           value: [89, 56, 142, 168, 232, 236, 358, 469, 265, 46, 55, 66],

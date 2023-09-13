@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
 const getCaches = computed((): string[] => {
-  // return tagsViewStore.getCachedViews
   return []
 })
 </script>

@@ -39,7 +39,7 @@ import NavBar from './components/NavBar.vue'
 import AppMain from './components/AppMain.vue'
 import Footer from './components/Footer.vue'
 
-const isMobile = ref(false)
+const isMobile = ref<boolean>(false)
 const header = ref('fixed')
 const appStore = useAppStore()
 const collapse = computed(() => appStore.getCollapse)

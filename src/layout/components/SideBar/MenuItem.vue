@@ -1,11 +1,11 @@
 <template>
-  <template v-if="props.data.meta.hidden"></template>
+  <template v-if="data.meta.hidden"></template>
 
   <el-menu-item
     v-else-if="
-      hasOneShowingChild(props.data.children, props.data) &&
+      hasOneShowingChild(data.children, data) &&
       (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-      !props.data.alwaysShow
+      !data.alwaysShow
     "
     :index="onlyOneChild.path"
   >
@@ -15,24 +15,19 @@
     <span>{{ onlyOneChild.name }}</span>
   </el-menu-item>
 
-  <el-sub-menu v-else :index="props.data.path" :key="props.data.path">
+  <el-sub-menu v-else :index="data.path" :key="data.path">
     <template #title>
-      <el-icon v-if="props.data.meta.icon">
-        <component :is="props.data.meta.icon" />
+      <el-icon v-if="data.meta.icon">
+        <component :is="data.meta.icon" />
       </el-icon>
-      <span>{{ props.data.name }}</span>
+      <span>{{ data.name }}</span>
     </template>
-    <MenuItem
-      v-for="child in props.data.children"
-      :key="child.path"
-      :data="child"
-      :index="child.path"
-    />
+    <MenuItem v-for="child in data.children" :key="child.path" :data="child" :index="child.path" />
   </el-sub-menu>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
     default: () => ({})
