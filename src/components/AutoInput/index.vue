@@ -13,7 +13,7 @@
     <img
       v-show="clearable && state.content"
       class="clear-icon"
-      src="../assets/close.png"
+      src="@/assets/close.png"
       :style="{ left: left + 'px' }"
       @click="cleanContent"
       alt=""
