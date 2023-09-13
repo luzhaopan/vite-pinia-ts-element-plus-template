@@ -88,20 +88,6 @@ export const asyncRoutes: AppRouteRecordRaw[]  = [
         meta: { title: 'RadarEcharts', roles: ['admin'] }
       }
     ]
-  },
-  {
-    path: '/timeline',
-    name: 'TimelineDemo',
-    component: Layout,
-    meta: {},
-    children: [
-      {
-        path: '/timeline/index',
-        name: 'Timeline',
-        component: () => import('@/views/timeline/index.vue'),
-        meta: { title: 'Timeline', icon: 'Timer' }
-      }
-    ]
   }
 ]
 

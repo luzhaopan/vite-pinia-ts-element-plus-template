@@ -56,20 +56,6 @@ const routerList = [
         meta: { title: 'RadarEcharts' }
       }
     ]
-  },
-  {
-    path: '/timeline',
-    component: '#',
-    meta: { title: 'TimelineDemo' },
-    redirect: '/timeline/index',
-    children: [
-      {
-        path: '/timeline/index',
-        name: 'Timeline',
-        component: 'views/timeline/index',
-        meta: { title: 'Timeline', icon: 'Timer' }
-      }
-    ]
   }
 ]
 
