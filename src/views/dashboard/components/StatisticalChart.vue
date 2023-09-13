@@ -48,7 +48,7 @@ const options: any = {
     subtext: '',
     x: 'center',
     textStyle: {
-      color: '#999'
+      color: '#666'
     }
   },
   //   tooltip: {
@@ -162,7 +162,7 @@ const options: any = {
           colorStops: [
             {
               offset: 0,
-              color: '#09132c' // 0% 处的颜色
+              color: '#0e1b32' // 0% 处的颜色
             },
             {
               offset: 1,

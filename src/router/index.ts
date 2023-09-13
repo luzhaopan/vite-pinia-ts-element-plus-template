@@ -50,6 +50,26 @@ export const asyncRoutes: AppRouteRecordRaw[]  = [
     ]
   },
   {
+    path: '/demo',
+    name: 'Demo',
+    component: Layout,
+    meta: { title: 'Demo', icon: 'Fries' },
+    children: [
+      {
+        path: '/demo/calendar',
+        name: 'Calendar',
+        component: () => import('@/views/demo/calendarDemo.vue'),
+        meta: { title: 'Calendar' }
+      },
+      {
+        path: '/demo/autoInput',
+        name: 'AutoInput',
+        component: () => import('@/views/demo/autoInput1.vue'),
+        meta: { title: 'AutoInput' }
+      }
+    ]
+  },
+  {
     path: '/echarts',
     name: 'Echarts',
     component: Layout,
