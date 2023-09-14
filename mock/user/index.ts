@@ -25,15 +25,16 @@ const List: {
 const routerList = [
   {
     path: '/',
+    name: 'Home',
     component: '#',
-    meta: { title: 'Dashboard', icon: 'Odometer' },
-    redirect: '/dashboard/index',
+    meta: { icon: 'Home' },
+    redirect: '/Home/index',
     children: [
       {
-        path: '/dashboard/index',
-        name: 'Dashboard',
-        component: 'views/dashboard/index',
-        meta: { title: 'Dashboard', icon: 'Odometer' }
+        path: '/home/index',
+        name: 'Home',
+        component: 'views/home/index',
+        meta: { title: 'Home', icon: 'House' }
       }
     ]
   },
@@ -47,13 +48,13 @@ const routerList = [
         path: '/echarts/barEcharts',
         name: 'BarEcharts',
         component: 'views/echarts/barEcharts',
-        meta: { title: 'BarEcharts' }
+        meta: { title: 'BarEcharts', icon: 'Chicken' }
       },
       {
         path: '/echarts/radarEcharts',
         name: 'RadarEcharts',
         component: 'views/echarts/radarEcharts',
-        meta: { title: 'RadarEcharts' }
+        meta: { title: 'RadarEcharts', icon: 'Sunny' }
       }
     ]
   }

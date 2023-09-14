@@ -59,13 +59,13 @@ export const asyncRoutes: AppRouteRecordRaw[]  = [
         path: '/demo/calendar',
         name: 'Calendar',
         component: () => import('@/views/demo/calendarDemo.vue'),
-        meta: { title: 'Calendar' }
+        meta: { title: 'Calendar', icon: 'SetUp' }
       },
       {
         path: '/demo/autoInput',
         name: 'AutoInput',
         component: () => import('@/views/demo/autoInput1.vue'),
-        meta: { title: 'AutoInput' }
+        meta: { title: 'AutoInput', icon: 'ScaleToOriginal' }
       }
     ]
   },
@@ -79,13 +79,13 @@ export const asyncRoutes: AppRouteRecordRaw[]  = [
         path: '/echarts/barEcharts',
         name: 'BarEcharts',
         component: () => import('@/views/echarts/barEcharts.vue'),
-        meta: { title: 'BarEcharts', roles: ['visitor'] }
+        meta: { title: 'BarEcharts', icon: 'Chicken', roles: ['visitor'] }
       },
       {
         path: '/echarts/radarEcharts',
         name: 'RadarEcharts',
         component: () => import('@/views/echarts/radarEcharts.vue'),
-        meta: { title: 'RadarEcharts', roles: ['admin'] }
+        meta: { title: 'RadarEcharts', icon: 'Sunny', roles: ['admin'] }
       }
     ]
   }
