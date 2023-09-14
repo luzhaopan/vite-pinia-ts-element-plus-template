@@ -23,6 +23,10 @@
       </el-form-item>
       <el-form-item label="" prop="remember">
         <el-checkbox v-model="ruleForm.remember" label="记住我" size="small" />
+        <div style="color: #fff; font-size: 12px; margin-left: 20px">
+          <el-switch size="small" v-model="value1" @change="isUseDynamicRouter" />
+          <span style="margin-left: 10px">使用动态路由</span>
+        </div>
       </el-form-item>
 
       <el-form-item>
@@ -64,6 +68,8 @@ const permissionStore = usePermissionStore()
 const { currentRoute, addRoute, push } = useRouter()
 const { useStorage } = useCache()
 
+const value1 = ref(appStore.getDynamicRouter)
+
 const loading = ref(false)
 
 const formSize = ref('default')
@@ -104,6 +110,10 @@ watch(
     immediate: true
   }
 )
+
+const isUseDynamicRouter = (v: boolean) => {
+  appStore.setDynamicRouter(v)
+}
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return

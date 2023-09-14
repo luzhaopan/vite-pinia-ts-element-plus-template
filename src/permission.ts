@@ -37,8 +37,10 @@ router.beforeEach(async (to, from, next) => {
 
       const userInfo = useStorage.get('userInfo')
 
+      const isUseDynamicRouter = appStore.getDynamicRouter || useStorage.get('dynamicRouter')
+
       // 是否使用动态路由
-      if (appStore.getDynamicRouter) {
+      if (isUseDynamicRouter) {
         await permissionStore.generateRoutes('admin', roleRouters as AppRouteRecordRaw[])
       } else {
         if(userInfo.role === 'admin'){

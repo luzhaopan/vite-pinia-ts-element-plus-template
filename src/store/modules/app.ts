@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-
+import { useCache } from '@/hooks/useStorage'
 interface AppState {
   userInfo: string
   breadcrumb: boolean
@@ -8,6 +8,8 @@ interface AppState {
   device: string
   dynamicRouter: boolean
 }
+
+const { useStorage } = useCache()
 
 export const useAppStore = defineStore('app', {
   state: (): AppState => {
@@ -50,7 +52,7 @@ export const useAppStore = defineStore('app', {
       this.device = device
     },
     setDynamicRouter(dynamicRouter: boolean) {
-      // setStorage('dynamicRouter', dynamicRouter)
+      useStorage.set('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
     },
   }
