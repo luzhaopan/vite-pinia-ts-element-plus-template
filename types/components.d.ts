@@ -10,6 +10,7 @@ declare module 'vue' {
     AutoInput: typeof import('./../src/components/AutoInput/index.vue')['default']
     Breadcrumb: typeof import('./../src/components/Breadcrumb/index.vue')['default']
     Calendar: typeof import('./../src/components/Calendar/index.vue')['default']
+    Clock: typeof import('./../src/components/Clock/index.vue')['default']
     EChart: typeof import('./../src/components/EChart/index.vue')['default']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']

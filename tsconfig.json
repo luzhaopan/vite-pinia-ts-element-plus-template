@@ -2,7 +2,7 @@
   "files": [],
   "compilerOptions": {
     "module": "ESNext",
-    "target": "es2016",
+    "target": "ES2020",
     "lib": ["DOM", "ESNext"],
     "strict": true,
     "jsx": "preserve",
@@ -14,6 +14,9 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "baseUrl": ".",
     "paths": {
         "@/*": ["src/*"]

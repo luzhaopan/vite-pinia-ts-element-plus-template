@@ -4,15 +4,18 @@
       <span class="page-header-heading-title">Home</span>
     </div>
     <div class="page-header-content">
-      <div>
-        <img src="@/assets/avatar.webp" class="avatar" />
-      </div>
-      <div class="content">
-        <div class="content-title">
-          Hello，nice to meet u!<span class="welcome-text">，good luck!</span>
+      <div class="page-header-info">
+        <div>
+          <img src="@/assets/avatar.webp" class="avatar" />
         </div>
-        <div>为了维护世界和平，让我们一起努力吧！</div>
+        <div class="content">
+          <div class="content-title">
+            Hello，nice to meet u!<span class="welcome-text">，good luck!</span>
+          </div>
+          <div>为了维护世界和平，让我们一起努力吧！</div>
+        </div>
       </div>
+      <Clock />
     </div>
   </div>
   <el-card class="box-card">
@@ -99,8 +102,12 @@
 }
 
 .page-header-content {
-  padding-top: 12px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-header-info {
   display: flex;
   justify-content: flex-start;
   align-items: center;
