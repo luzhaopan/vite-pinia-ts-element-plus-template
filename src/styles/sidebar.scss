@@ -89,4 +89,14 @@ body {
       color: $base-menu-color-active;
     }
   }
+  .el-menu--horizontal>.el-menu-item.is-active {
+    background: $base-menu-background-active !important;
+    color: #fff !important;
+  }
+  .el-menu--horizontal>.el-sub-menu.is-active .el-sub-menu__title {
+    border-bottom: 2px solid #fff !important;
+  }
+  .el-menu--horizontal.el-menu {
+    border-bottom: none;
+  }
 }

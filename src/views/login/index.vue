@@ -27,6 +27,10 @@
           <el-switch size="small" v-model="value1" @change="isUseDynamicRouter" />
           <span style="margin-left: 10px">使用动态路由</span>
         </div>
+        <div style="color: #fff; font-size: 12px; margin-left: 20px">
+          <el-switch size="small" v-model="value2" @change="isMenuHorizontal" />
+          <span style="margin-left: 10px">菜单是否顶栏布局</span>
+        </div>
       </el-form-item>
 
       <el-form-item>
@@ -69,6 +73,10 @@ const { currentRoute, addRoute, push } = useRouter()
 const { useStorage } = useCache()
 
 const value1 = ref(appStore.getDynamicRouter)
+
+const value2 = computed(() => {
+  return appStore.getLayout === 'topmenu'
+})
 
 const loading = ref(false)
 
@@ -113,6 +121,11 @@ watch(
 
 const isUseDynamicRouter = (v: boolean) => {
   appStore.setDynamicRouter(v)
+}
+
+const isMenuHorizontal = (v: boolean) => {
+  const layout = v ? 'topmenu' : 'sidemenu'
+  appStore.setLayout(layout)
 }
 
 const submitForm = async (formEl: FormInstance | undefined) => {

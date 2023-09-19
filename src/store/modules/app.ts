@@ -7,6 +7,8 @@ interface AppState {
   collapse: boolean
   device: string
   dynamicRouter: boolean
+  mobile: boolean
+  layout: string
 }
 
 const { useStorage } = useCache()
@@ -18,7 +20,10 @@ export const useAppStore = defineStore('app', {
       device: 'desktop', // 桌面端，移动端 mobile
       breadcrumb: true, // 面包屑
       collapse: false, // 折叠菜单
-      dynamicRouter:  false // 是否动态路由
+      dynamicRouter:  false, // 是否动态路由
+      mobile: false, // 是否是移动端
+      layout: useStorage.get('layout') || 'sidemenu' // layout布局
+      // layout: useStorage.get('layout') || 'topmenu' 
     }
   },
   getters: {
@@ -37,6 +42,12 @@ export const useAppStore = defineStore('app', {
     getDynamicRouter(): boolean {
       return this.dynamicRouter
     },
+    getMobile(): boolean {
+      return this.mobile
+    },
+    getLayout(): string {
+      return this.layout
+    }
   },
   actions: {
     setBreadcrumb(breadcrumb: boolean) {
@@ -54,6 +65,17 @@ export const useAppStore = defineStore('app', {
     setDynamicRouter(dynamicRouter: boolean) {
       useStorage.set('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
+    },
+    setMobile(mobile: boolean) {
+      this.mobile = mobile
+    },
+    setLayout(layout: string) {
+      if (this.mobile && layout !== 'sidemenu') {
+        // ElMessage.warning('移动端模式下不支持切换其它布局')
+        return
+      }
+      this.layout = layout
+      useStorage.set('layout', this.layout)
     },
   }
 })

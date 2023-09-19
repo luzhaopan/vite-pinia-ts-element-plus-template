@@ -12,9 +12,17 @@
         class="mask"
         @click="handleFoldSideBar"
       ></div>
-      <SideBar class="sidebar-container" />
-      <div class="main-container" :class="collapse ? 'is-collapse-main' : ''">
+      <SideBar v-if="layout === 'sidemenu'" class="sidebar-container" />
+      <div
+        class="main-container"
+        :class="{
+          'is-collapse-main': collapse,
+          sidemenu: layout === 'sidemenu',
+          topmenu: layout === 'topmenu'
+        }"
+      >
         <div
+          v-if="layout === 'sidemenu'"
           class="layout-navbar"
           :class="{
             'fixed-header': header === 'fixed',
@@ -23,6 +31,16 @@
           }"
         >
           <NavBar />
+        </div>
+        <div
+          v-else
+          class="layout-navbar"
+          :class="{
+            'fixed-header': header === 'fixed',
+            'top-header': true
+          }"
+        >
+          <TopBar />
         </div>
         <AppMain />
         <Footer />
@@ -36,6 +54,7 @@
 import { useAppStore } from '@/store/modules/app'
 import SideBar from './components/SideBar/index.vue'
 import NavBar from './components/NavBar.vue'
+import TopBar from './components/TopBar.vue'
 import AppMain from './components/AppMain.vue'
 import Footer from './components/Footer.vue'
 
@@ -44,6 +63,7 @@ const header = ref('fixed')
 const appStore = useAppStore()
 const collapse = computed(() => appStore.getCollapse)
 const device = computed(() => appStore.getDevice)
+const layout = computed(() => appStore.getLayout)
 
 const handleFoldSideBar = () => {
   appStore.setCollapse(true)
@@ -85,7 +105,6 @@ onUnmounted(() => {
     .main-container {
       position: relative;
       min-height: 100%;
-      margin-left: $base-left-menu-max-width;
       background: #f6f8f9;
       // transition: $base-transition;
       .layout-navbar {
@@ -103,6 +122,16 @@ onUnmounted(() => {
       .hideSidebar .fixed-header {
         width: calc(100% - $base-left-menu-min-width);
       }
+      .top-header {
+        width: 100%;
+      }
+    }
+
+    .sidemenu {
+      margin-left: $base-left-menu-max-width;
+    }
+    .topmenu {
+      margin-left: 0;
     }
     .mask {
       position: fixed;
