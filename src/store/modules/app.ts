@@ -8,7 +8,7 @@ interface AppState {
   device: string
   dynamicRouter: boolean
   mobile: boolean
-  layout: string
+  layout: LayoutType
 }
 
 const { useStorage } = useCache()
@@ -45,7 +45,7 @@ export const useAppStore = defineStore('app', {
     getMobile(): boolean {
       return this.mobile
     },
-    getLayout(): string {
+    getLayout(): LayoutType {
       return this.layout
     }
   },
@@ -69,7 +69,7 @@ export const useAppStore = defineStore('app', {
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
-    setLayout(layout: string) {
+    setLayout(layout: LayoutType) {
       if (this.mobile && layout !== 'sidemenu') {
         // ElMessage.warning('移动端模式下不支持切换其它布局')
         return
