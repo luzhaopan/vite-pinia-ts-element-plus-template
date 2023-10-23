@@ -12,7 +12,7 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="toGithub">github</el-dropdown-item>
-        <el-dropdown-item divided @click="logOut">Log Out</el-dropdown-item>
+        <el-dropdown-item divided @click="logOut">logout</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>

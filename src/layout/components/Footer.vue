@@ -1,6 +1,8 @@
 <template>
   <div class="footer">
-    <div class="left">Copyright © 2022-2023</div>
+    <div class="left">
+      Copyright © vite-admin-template 2023 by luzhaopan 745003249@qq.com 基于 vite 开发
+    </div>
     <div class="right"></div>
   </div>
 </template>
