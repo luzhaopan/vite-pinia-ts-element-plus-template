@@ -1,6 +1,6 @@
 <template>
   <el-dropdown class="avatar-container">
-    <div class="avatar-wrapper">
+    <span class="avatar-wrapper">
       <img src="@/assets/avatar.webp" class="user-avatar" />
       <div class="user-name">
         {{ username }}
@@ -8,9 +8,10 @@
       <el-icon class="el-icon--right">
         <arrow-down />
       </el-icon>
-    </div>
+    </span>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item @click="toGithub">github</el-dropdown-item>
         <el-dropdown-item divided @click="logOut">Log Out</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -18,6 +19,7 @@
 </template>
 
 <script setup>
+import { ArrowDown } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { useCache } from '@/hooks/web/useCache'
@@ -27,6 +29,12 @@ const { replace } = useRouter()
 const { wsCache } = useCache()
 
 const username = 'luis'
+
+const toGithub = () => {
+  window.open(
+    'https://github.com/luzhaopan/vite-pinia-ts-element-plus-template/tree/vite-admin-template'
+  )
+}
 
 const logOut = async () => {
   ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {

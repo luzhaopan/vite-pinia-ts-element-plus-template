@@ -5,25 +5,32 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    meta: { title: 'Dashboard', icon: 'Odometer' },
-    redirect: '/dashboard',
+    redirect: '/Home/index',
     children: [
       {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: 'Dashboard', icon: 'Odometer' }
+        path: '/home/index',
+        name: 'Home',
+        component: () => import('@/views/home/index.vue'),
+        meta: { title: 'Home', icon: 'House' }
       }
     ]
   },
   {
-    path: '/about',
+    path: '/demo',
+    name: 'Demo',
     component: Layout,
+    meta: { title: 'Demo', icon: 'Odometer' },
     children: [
       {
-        path: '/about/index',
+        path: '/demo/homeView',
+        name: 'HomeView',
+        component: () => import('@/views/demo/homeView.vue'),
+        meta: { title: 'Dashboard', icon: 'Bicycle' }
+      },
+      {
+        path: '/demo/aboutView',
         name: 'About',
-        component: () => import('@/views/AboutView.vue'),
+        component: () => import('@/views/demo/aboutView.vue'),
         meta: { title: 'About', icon: 'Connection' }
       }
     ]
