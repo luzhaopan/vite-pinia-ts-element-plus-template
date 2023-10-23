@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    AutoImport({
+    AutoImport({ // 匹配的文件，也就是哪些后缀的文件需要自动引入
       resolvers: [ElementPlusResolver()],
     }),
     Components({

@@ -24,10 +24,15 @@ const routes = [
         path: '/about/index',
         name: 'About',
         component: () => import('@/views/AboutView.vue'),
-        meta: { title: 'About', icon: 'About' }
+        meta: { title: 'About', icon: 'Connection' }
       }
     ]
   },
+  {
+    path: '/login',
+    hidden: true,
+    component: () => import('@/views/login/index.vue')
+  }
 ]
 
 const router = createRouter({
