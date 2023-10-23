@@ -39,7 +39,7 @@ import { ref, reactive } from 'vue'
 import { setToken } from '@/utils/auth'
 import { useCache } from '@/hooks/web/useCache'
 import { useAppStore } from '@/stores/modules/app'
-// import { loginApi } from '@/api/login'
+import { loginApi } from '@/api/login'
 import router from '@/router'
 
 const appStore = useAppStore()
@@ -77,17 +77,16 @@ const submitForm = async (formEl) => {
     if (valid) {
       loading.value = true
       try {
-        // const res = await loginApi(ruleForm)
-        // console.log(res)
-        // if (res.code == 200) {
-        wsCache.set(appStore.getUserInfo, {
-          username: 'admin',
-          password: 'admin'
-        })
-        setToken('admin')
-        //   router.push('/')
-        // }
-        router.push('/')
+        const res = await loginApi(ruleForm)
+        console.log(res)
+        if (res.code == 200) {
+          wsCache.set(appStore.getUserInfo, {
+            username: 'admin',
+            password: 'admin'
+          })
+          setToken('admin')
+          router.push('/')
+        }
       } finally {
         loading.value = false
       }
