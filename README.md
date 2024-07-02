@@ -29,5 +29,4 @@ pnpm lint
 
 ## todo
 
-1. add Tailwind CSS 
-2. 国际化
+1. 国际化

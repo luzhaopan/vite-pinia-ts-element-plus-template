@@ -2,13 +2,13 @@
   <div class="login-box">
     <el-form
       ref="ruleFormRef"
-      :model="ruleForm"
-      :rules="rules"
       label-width="120px"
       class="login-form"
-      :size="formSize"
       label-position="top"
       status-icon
+      :size="formSize"
+      :model="ruleForm"
+      :rules="rules"
     >
       <el-form-item label="" prop="username">
         <el-input v-model="ruleForm.username" />

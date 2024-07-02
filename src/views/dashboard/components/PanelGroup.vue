@@ -1,7 +1,7 @@
 <template>
-  <ElRow :gutter="20" justify="space-between" class="prefixCls">
-    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24">
-      <ElCard shadow="hover" class="mb-20px">
+  <ElRow :gutter="20" justify="space-between" class="mb-2.5">
+    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24" class="mb-2.5">
+      <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="2">
           <div style="height: 48px">
             <div class="title">Total Sales</div>
@@ -11,8 +11,8 @@
       </ElCard>
     </ElCol>
 
-    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24">
-      <ElCard shadow="hover" class="mb-20px">
+    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24" class="mb-2.5">
+      <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="2">
           <div style="height: 48px">
             <div class="title">Operational Effect</div>
@@ -22,8 +22,8 @@
       </ElCard>
     </ElCol>
 
-    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24">
-      <ElCard shadow="hover" class="mb-20px">
+    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24" class="mb-2.5">
+      <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="2">
           <el-statistic title="Feedback number" :value="562">
             <template #suffix>
@@ -36,8 +36,8 @@
       </ElCard>
     </ElCol>
 
-    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24">
-      <ElCard shadow="hover" class="mb-20px">
+    <ElCol :xl="6" :lg="6" :md="12" :sm="12" :xs="24" class="mb-2.5">
+      <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="2">
           <el-countdown title="Remaining VIP time" format="HH:mm:ss" :value="value" />
         </ElSkeleton>
@@ -71,9 +71,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.prefixCls {
-  margin-bottom: 20px;
-}
 .title {
   color: rgba(0, 0, 0, 0.45);
   font-size: 14px;

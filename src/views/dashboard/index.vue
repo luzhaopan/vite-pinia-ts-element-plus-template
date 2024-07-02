@@ -1,7 +1,8 @@
 <template>
   <PanelGroup :loading="loading" />
+  <h1 class="text-3xl font-bold underline text-red-600 ml-5">Hello world!</h1>
   <ElRow :gutter="20" justify="space-between">
-    <ElCol :xl="14" :lg="14" :md="24" :sm="24" :xs="24">
+    <ElCol :xl="14" :lg="14" :md="24" :sm="24" :xs="24" class="mb-2.5">
       <ElCard shadow="hover">
         <ElSkeleton :loading="loading" animated :rows="5">
           <Table :data="state.tableData" />
@@ -29,7 +30,7 @@ import Table from './components/Table.vue'
 import List from './components/List.vue'
 import StatisticalChart from './components/StatisticalChart.vue'
 import { getTableApi, getListApi } from '@/api/dashboard'
-import { ListData, TableData } from '@/api/dashboard/types'
+import type { ListData, TableData } from '@/api/dashboard/types'
 
 const loading = ref<boolean>(true)
 
@@ -76,9 +77,3 @@ const getAllApi = async () => {
 
 getAllApi()
 </script>
-
-<style scoped>
-.el-col {
-  margin-bottom: 20px;
-}
-</style>
