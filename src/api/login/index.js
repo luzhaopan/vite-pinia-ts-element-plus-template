@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 // 用户登录
-export function loginApi(params: object) {
+export function loginApi(params) {
   return request({
     url: '/user/login',
     method: 'post',
@@ -10,7 +10,7 @@ export function loginApi(params: object) {
 }
 
 // 用户退出登录
-export function signOut(params: object) {
+export function signOut(params) {
   return request({
     url: '/user/signOut',
     method: 'post',
