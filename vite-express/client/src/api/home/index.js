@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getTableData(params) {
   return request({
-    url: '/api/users/list',
+    url: '/api/users/tableData',
     method: 'get',
     data: params
   })

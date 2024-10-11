@@ -59,4 +59,52 @@ router.get('/list', function(req, res, next) {
   });
 });
 
+router.get('/tableData', function(req, res, next) {
+  res.send({
+    code: 200,
+    data: [
+      {
+        id: 1,
+        date: '2016-05-03',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home'
+      },
+      {
+        id: 2,
+        date: '2016-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office'
+      },
+      {
+        id: 3,
+        date: '2016-05-04',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Home'
+      },
+      {
+        id: 4,
+        date: '2016-05-01',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: 'CA 90036',
+        tag: 'Office'
+      }
+    ]
+  });
+});
+
 module.exports = router;

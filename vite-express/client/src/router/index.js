@@ -22,9 +22,9 @@ const routes = [
     meta: { title: 'Demo', icon: 'Odometer' },
     children: [
       {
-        path: '/demo/homeView',
-        name: 'HomeView',
-        component: () => import('@/views/demo/homeView.vue'),
+        path: '/demo/baseTable',
+        name: 'BaseTable',
+        component: () => import('@/views/demo/baseTable.vue'),
         meta: { title: 'Dashboard', icon: 'Bicycle' }
       },
       {
