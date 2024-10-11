@@ -76,7 +76,17 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import Clock from '@/components/Clock/index.vue'
+import { getList } from '@/api/home'
+
+const submitForm = async () => {
+  const res = await getList()
+  console.log(3, res)
+}
+onMounted(() => {
+  submitForm()
+})
 </script>
 
 <style lang="scss" scoped>

@@ -51,7 +51,7 @@ export default defineConfig (({ command, mode }) => {
       proxy: {
         '/api': {
           // 后台地址
-          target: 'http://127.0.0.1:8000/',
+          target: 'http://localhost:3001/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
