@@ -16,7 +16,6 @@ const usersList = {
 router.post('/login', function(req, res, next) {
   const {username, password} = req.body;
   if (usersList[username] && usersList[username].password === password) {
-    // req.session.user = usersList[username];
     res.send({
       code: 200,
       data:{
@@ -35,6 +34,28 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   res.send({
     code: 200
+  });
+});
+
+router.get('/list', function(req, res, next) {
+  res.send({
+    code: 200,
+    data: [{
+      title: '亚锦赛',
+      desc: '亚锦赛国乒男团3-1中国台北夺冠 王楚钦再拿2分'
+    },
+    {
+      title: '欧国联',
+      desc: '欧国联-贝林厄姆破门 英格兰1-2队史首负希腊'
+    },
+    {
+      title: '英超',
+      desc: '国家队比赛日超低赔又没打出 这1特征暗示冷门'
+    },
+    {
+      title: '英超',
+      desc: '切尔西不急于让凯利曼复出，重要的是让球员恢复'
+    }]
   });
 });
 

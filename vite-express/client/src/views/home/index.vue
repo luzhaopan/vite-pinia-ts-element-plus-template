@@ -21,68 +21,35 @@
   <el-card class="box-card">
     <template #header>
       <div class="card-header">
-        <span>information</span>
+        <span>动态</span>
       </div>
     </template>
-    <table class="table">
-      <tr>
-        <td>vite</td>
-        <td>^4.4.9</td>
-        <td>vue</td>
-        <td>^3.3.4</td>
-      </tr>
-      <tr>
-        <td>pinia</td>
-        <td>^2.1.6</td>
-        <td>vue-router</td>
-        <td>^4.2.4</td>
-      </tr>
-      <tr>
-        <td>element-plus</td>
-        <td>^2.3.9</td>
-        <td>axios</td>
-        <td>^1.2.1</td>
-      </tr>
-      <tr>
-        <td>echarts</td>
-        <td>^5.4.3</td>
-        <td>mockjs</td>
-        <td>^1.1.0</td>
-      </tr>
-      <tr>
-        <td>lodash-es</td>
-        <td>^4.17.21</td>
-        <td>vite-plugin-mock</td>
-        <td>2.9.6</td>
-      </tr>
-      <tr>
-        <td>web-storage-cache</td>
-        <td>^1.1.1</td>
-        <td>eslint</td>
-        <td>^8.46.0</td>
-      </tr>
-      <tr>
-        <td>github address</td>
-        <td colspan="3">
-          <a
-            href="https://github.com/luzhaopan/vite-pinia-ts-element-plus-template/tree/vite-admin-template"
-          >
-            点我
-          </a>
-        </td>
-      </tr>
-    </table>
+    <div>
+      <div>
+        <div class="flex items-center mt-3" v-for="item in list" :key="item.desc">
+          <img src="@/assets/avatar.webp" class="w-8 h-8 rounded-lg" />
+          <div class="content">
+            <div class="text-base font-bold">
+              {{ item.title }}
+            </div>
+            <div class="text-sm">{{ item.desc }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </el-card>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import Clock from '@/components/Clock/index.vue'
 import { getList } from '@/api/home'
 
+const list = ref([])
+
 const submitForm = async () => {
   const res = await getList()
-  console.log(3, res)
+  list.value = res.data
 }
 onMounted(() => {
   submitForm()
