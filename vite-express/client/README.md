@@ -20,13 +20,4 @@ pnpm dev
 pnpm build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
-## todo
-1. 动态路由
-2. 权限校验
-3. 国际化
    

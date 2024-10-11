@@ -16,6 +16,10 @@ const usersList = {
 router.post('/login', function(req, res, next) {
   const {username, password} = req.body;
   if (usersList[username] && usersList[username].password === password) {
+     // 读取前端cookies
+    // console.log(req.cookies);
+    // 设置cookies
+    res.cookie('username', 'zhangsan');
     res.send({
       code: 200,
       data:{
@@ -31,6 +35,7 @@ router.post('/login', function(req, res, next) {
     });
   }
 });
+
 router.get('/logout', function(req, res, next) {
   res.send({
     code: 200
