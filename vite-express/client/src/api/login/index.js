@@ -3,17 +3,17 @@ import request from '@/utils/request'
 // 用户登录
 export function loginApi(params) {
   return request({
-    url: '/user/login',
+    url: '/api/users/login',
     method: 'post',
     data: params
   })
 }
 
 // 用户退出登录
-export function signOut(params) {
+export function logoutApi(params) {
   return request({
-    url: '/user/signOut',
-    method: 'post',
+    url: '/api/users/logout',
+    method: 'get',
     data: params
   })
 }

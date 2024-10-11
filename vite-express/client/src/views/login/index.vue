@@ -78,14 +78,16 @@ const submitForm = async (formEl) => {
       loading.value = true
       try {
         const res = await loginApi(ruleForm)
-        console.log(res)
-        if (res.code == 200) {
+        // console.log(res)
+        const { code, data } = res
+        if (code == 200) {
           wsCache.set(appStore.getUserInfo, {
-            username: 'admin',
-            password: 'admin'
+            username: data.name
           })
-          setToken('admin')
+          setToken(data.name)
           router.push('/')
+        } else {
+          ElMessage.error(data.message)
         }
       } finally {
         loading.value = false

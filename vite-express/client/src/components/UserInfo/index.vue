@@ -25,6 +25,8 @@ import { useRouter } from 'vue-router'
 import { useCache } from '@/hooks/web/useCache'
 import { removeToken } from '@/utils/auth'
 
+import { logoutApi } from '@/api/login'
+
 const { replace } = useRouter()
 const { wsCache } = useCache()
 
@@ -43,13 +45,16 @@ const logOut = async () => {
     type: 'warning'
   })
     .then(async () => {
-      wsCache.clear()
-      removeToken()
-      await replace('/login')
-      ElMessage({
-        type: 'success',
-        message: '退出登录成功！'
-      })
+      const res = await logoutApi()
+      if (res.code == 200) {
+        wsCache.clear()
+        removeToken()
+        await replace('/login')
+        ElMessage({
+          type: 'success',
+          message: '退出登录成功！'
+        })
+      }
     })
     .catch(() => {})
 }
