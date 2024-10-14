@@ -1,4 +1,5 @@
 var express = require('express');
+const UserModel = require('../model/UserModel');
 var router = express.Router();
 
 const usersList = {
@@ -20,6 +21,15 @@ router.post('/login', function(req, res, next) {
     // console.log(req.cookies);
     // 设置cookies
     res.cookie('username', 'zhangsan');
+    // 插入数据库
+    UserModel.create({
+      username,
+      password
+    }).then((data) => {
+      console.log('插入成功', data);
+    }).catch((err) => {
+      console.log('插入失败', err);
+    })
     res.send({
       code: 200,
       data:{

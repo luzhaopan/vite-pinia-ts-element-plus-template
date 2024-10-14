@@ -43,12 +43,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import Clock from '@/components/Clock/index.vue'
-import { getList } from '@/api/home'
+import { getTableData } from '@/api/home'
 
 const list = ref([])
 
 const submitForm = async () => {
-  const res = await getList()
+  const res = await getTableData()
   list.value = res.data
 }
 onMounted(() => {

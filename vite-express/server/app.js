@@ -19,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser()); // 允许读取cookie
 app.use(express.static(path.join(__dirname, 'public')));
 
+// require('./config/db.config.js'); // 引入数据库配置
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('express-server:server');
 var http = require('http');
 
+// 引入数据库模块并连接
+require('../config/db.config');
+
 /**
  * Get port from environment and store in Express.
  */

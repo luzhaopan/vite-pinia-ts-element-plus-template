@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   // console.log(req.cookies);
   // // 设置cookies
   // res.cookie('username', 'zhangsan');
-  res.render('index', { title: 'Express11' });
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
