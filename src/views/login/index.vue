@@ -37,6 +37,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { setToken } from '@/utils/auth'
+import { encrypt } from '@/utils/rsaEncrypt'
 import { useCache } from '@/hooks/web/useCache'
 import { useAppStore } from '@/stores/modules/app'
 import { loginApi } from '@/api/login'
@@ -77,6 +78,9 @@ const submitForm = async (formEl) => {
     if (valid) {
       loading.value = true
       try {
+        // 密码加密
+        // ruleForm.password = encrypt(ruleForm.password)
+        console.log(encrypt(ruleForm.password));
         const res = await loginApi(ruleForm)
         console.log(res)
         if (res.code == 200) {
