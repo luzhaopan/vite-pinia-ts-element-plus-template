@@ -10,27 +10,22 @@
       label-position="top"
       status-icon
     >
+      <div class="font-size-30 font-weight-700 text-center mb-2">注册</div>
       <el-form-item label="" prop="username">
         <el-input v-model="ruleForm.username" />
       </el-form-item>
       <el-form-item label="" prop="password">
         <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="" prop="remember">
-        <el-switch v-model="ruleForm.remember" />
-      </el-form-item>
 
       <el-form-item>
-        <el-button :loading="loading" style="width: 30%" @click="handleRegister()">
-          register
-        </el-button>
         <el-button
-          :loading="loading"
-          style="width: 65%"
           type="primary"
-          @click="submitForm(ruleFormRef)"
+          style="width: 100%"
+          :loading="loading"
+          @click="handleRegister(ruleFormRef)"
         >
-          login
+          register
         </el-button>
       </el-form-item>
     </el-form>
@@ -39,22 +34,13 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { setToken } from '@/utils/auth'
-import { useCache } from '@/hooks/web/useCache'
-import { useAppStore } from '@/stores/modules/app'
-import { loginApi, register } from '@/api/login'
+import { register } from '@/api/login'
 import router from '@/router'
-
-const appStore = useAppStore()
-const { wsCache } = useCache()
-
-const loading = ref(false)
 
 const ruleFormRef = ref()
 const ruleForm = reactive({
-  username: 'admin',
-  password: 'admin',
-  remember: false
+  username: '',
+  password: ''
 })
 
 const rules = reactive({
@@ -74,30 +60,18 @@ const rules = reactive({
   ]
 })
 
-const handleRegister = () => {
-  router.push('/register')
-}
-
-const submitForm = async (formEl) => {
+const handleRegister = async (formEl) => {
   if (!formEl) return
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-      loading.value = true
       try {
-        const res = await loginApi(ruleForm)
+        const res = await register(ruleForm)
         // console.log(res)
-        const { code, data } = res
-        if (code == 200) {
-          wsCache.set(appStore.getUserInfo, {
-            username: data.name
-          })
-          setToken(data.name)
-          router.push('/')
-        } else {
-          ElMessage.error(data.message)
+        if (res.code === 200) {
+          router.push('/login')
         }
-      } finally {
-        loading.value = false
+      } catch (error) {
+        console.log(error)
       }
     } else {
       console.log('error submit!', fields)

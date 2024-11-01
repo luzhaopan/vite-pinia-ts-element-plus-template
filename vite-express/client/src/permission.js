@@ -5,7 +5,7 @@ import { getToken } from '@/utils/auth' // get token from cookie
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login' , '/auth-redirect'] // 不重定向白名单
+const whiteList = ['/login' , '/auth-redirect', '/register'] // 不重定向白名单
 
 router.beforeEach(async (to, from, next) => {
   // 开启进度条
