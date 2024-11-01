@@ -26,13 +26,13 @@
     </template>
     <div>
       <div>
-        <div class="flex items-center mt-3" v-for="item in list" :key="item.desc">
+        <div class="flex items-center mt-3" v-for="item in list" :key="item.id">
           <img src="@/assets/avatar.webp" class="w-8 h-8 rounded-lg" />
           <div class="content">
             <div class="text-base font-bold">
-              {{ item.title }}
+              {{ item.name }}
             </div>
-            <div class="text-sm">{{ item.desc }}</div>
+            <div class="text-sm">{{ item.address }}</div>
           </div>
         </div>
       </div>
