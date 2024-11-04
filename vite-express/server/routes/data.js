@@ -24,4 +24,21 @@ router.get("/dataList", function (req, res, next) {
     })
 })
 
+router.post("/edit", function (req, res, next) {
+  const { id, name } = req.body
+  // console.log(req.body);
+  // 更新条件
+  // const query = { _id: id };
+  // 更新内容
+  // const update = {  name  };
+  DataModel.updateOne({ id },{name}).then(data => {
+    res.send({
+      code: 200
+    })
+  })
+   .catch((err) => {
+     console.log("失败", err)
+   })
+})
+
 module.exports = router

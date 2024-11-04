@@ -7,3 +7,11 @@ export function getTableData(params) {
     data: params
   })
 }
+
+export function editData(params) {
+  return request({
+    url: '/api/data/edit',
+    method: 'post',
+    data: params
+  })
+}

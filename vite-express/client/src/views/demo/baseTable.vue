@@ -51,7 +51,7 @@
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { getTableData } from '@/api/home'
+import { getTableData, editData } from '@/api/home'
 
 const tableData = ref([])
 const loading = ref(false)
@@ -59,10 +59,7 @@ const dialogVisible = ref(false)
 
 const formSize = ref('default')
 const ruleFormRef = ref()
-const ruleForm = reactive({
-  name: '',
-  state: ''
-})
+const ruleForm = ref({})
 
 const rules = reactive({
   name: [
@@ -85,8 +82,7 @@ const handleDetail = () => {
 
 const handleEdit = (row) => {
   console.log('click', row)
-  ruleForm.name = row.name
-  ruleForm.date = row.date
+  ruleForm.value = { ...row }
   dialogVisible.value = true
 }
 
@@ -100,9 +96,14 @@ const handleClose = () => {
 
 const submitForm = async (formEl) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      console.log('submit!', ruleForm.value)
+      const res = await editData(ruleForm.value)
+      if (res.code === 200) {
+        fetchTableData()
+        dialogVisible.value = false
+      }
     } else {
       console.log('error submit!', fields)
     }
