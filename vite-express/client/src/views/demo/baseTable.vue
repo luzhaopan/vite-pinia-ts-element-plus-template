@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button type="primary" size="small" @click="handleAdd({})"> add </el-button>
     <el-table v-loading="loading" :data="tableData" style="width: 100%">
       <el-table-column fixed prop="date" label="Date" width="150" />
       <el-table-column prop="name" label="Name" width="120" />
@@ -51,7 +52,7 @@
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { getTableData, editData } from '@/api/home'
+import { getTableData, editData, add } from '@/api/home'
 
 const tableData = ref([])
 const loading = ref(false)
@@ -60,6 +61,7 @@ const dialogVisible = ref(false)
 const formSize = ref('default')
 const ruleFormRef = ref()
 const ruleForm = ref({})
+const isAdd = ref(false)
 
 const rules = reactive({
   name: [
@@ -78,6 +80,12 @@ const rules = reactive({
 
 const handleDetail = () => {
   console.log('click')
+}
+
+const handleAdd = (row) => {
+  isAdd.value = true
+  ruleForm.value = { ...row }
+  dialogVisible.value = true
 }
 
 const handleEdit = (row) => {
@@ -99,7 +107,13 @@ const submitForm = async (formEl) => {
   await formEl.validate(async (valid, fields) => {
     if (valid) {
       console.log('submit!', ruleForm.value)
-      const res = await editData(ruleForm.value)
+      let res = {}
+      if (isAdd) {
+        res = await add(ruleForm.value)
+      } else {
+        res = await editData(ruleForm.value)
+      }
+
       if (res.code === 200) {
         fetchTableData()
         dialogVisible.value = false

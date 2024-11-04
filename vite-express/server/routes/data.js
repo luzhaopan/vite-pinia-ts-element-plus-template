@@ -24,6 +24,17 @@ router.get("/dataList", function (req, res, next) {
     })
 })
 
+router.post("/add", function (req, res, next) {
+  DataModel.create({...req.body}).then(data => {
+    res.send({
+      code: 200
+    })
+  })
+   .catch((err) => {
+     console.log("失败", err)
+   })
+})
+
 router.post("/edit", function (req, res, next) {
   const { id, name } = req.body
   // console.log(req.body);
