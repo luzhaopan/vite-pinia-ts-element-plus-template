@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 用户登录
+// 用户注册
 export function register(params) {
   return request({
     url: '/api/users/register',
