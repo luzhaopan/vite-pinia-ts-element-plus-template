@@ -4,19 +4,12 @@ var router = express.Router()
 
 router.get("/dataList", function (req, res, next) {
 const { pageNumber, pageSize } = req.query
-   // 插入数据库
-  //  DataModel.create(list)
-  //   .then((data) => {
-  //     console.log("注册成功", data)
-  //   })
-  //   .catch((err) => {
-  //     console.log("注册失败", err)
-  //   })
   DataModel.countDocuments({}).then((total) => {
   const skipValue = (pageNumber - 1) * pageSize;
    DataModel.find()
    .skip(skipValue)
-   .limit(pageSize) // .skip(skipValue)
+   .limit(pageSize)
+   .sort({ createdTime: -1 })
     .then((data) => {
       res.send({
         code: 200,
@@ -35,7 +28,9 @@ router.post("/add", function (req, res, next) {
   const { name } = req.body
   DataModel.findOne({ name }).then(data => {
     if(!data){
-      DataModel.create({...req.body}).then(data => {
+      const createdTime = new Date();
+      const newData = { ...req.body, createdTime: createdTime }
+      DataModel.create(newData).then(data => {
           res.send({
             code: 200,
             msg: ""

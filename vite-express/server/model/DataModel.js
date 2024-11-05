@@ -8,7 +8,8 @@ const DataType = {
     city: String,
     address: String,
     zip: String,
-    tag: String
+    tag: String,
+    createdTime: String,
 }
 
 const DataModel = new mongoose.model("Data", new mongoose.Schema(DataType));
