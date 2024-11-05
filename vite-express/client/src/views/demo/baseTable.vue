@@ -20,6 +20,13 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      size="small"
+      background
+      layout="prev, pager, next"
+      :total="total"
+      @current-change="handleCurrentChange"
+    />
     <el-dialog v-model="dialogVisible" title="Edit" width="500" :before-close="handleClose">
       <el-form
         status-icon
@@ -79,6 +86,12 @@ const formSize = ref('default')
 const ruleFormRef = ref()
 const ruleForm = ref({})
 const isAdd = ref(false)
+const total = ref(0)
+
+const params = ref({
+  pageNumber: 1,
+  pageSize: 10
+})
 
 const rules = reactive({
   name: [
@@ -154,9 +167,16 @@ const resetForm = (formEl) => {
 
 const fetchTableData = async () => {
   loading.value = true
-  const res = await getTableData()
+  const res = await getTableData({ ...params.value })
   tableData.value = res.data
+  total.value = res.total
   loading.value = false
+}
+
+const handleCurrentChange = (val) => {
+  console.log(`current page: ${val}`)
+  params.value.pageNumber = val
+  fetchTableData()
 }
 
 onMounted(() => {

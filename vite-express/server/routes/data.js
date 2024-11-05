@@ -3,7 +3,7 @@ const DataModel = require("../model/DataModel")
 var router = express.Router()
 
 router.get("/dataList", function (req, res, next) {
-
+const { pageNumber, pageSize } = req.query
    // 插入数据库
   //  DataModel.create(list)
   //   .then((data) => {
@@ -12,22 +12,28 @@ router.get("/dataList", function (req, res, next) {
   //   .catch((err) => {
   //     console.log("注册失败", err)
   //   })
+  DataModel.countDocuments({}).then((total) => {
+  const skipValue = (pageNumber - 1) * pageSize;
    DataModel.find()
+   .skip(skipValue)
+   .limit(pageSize) // .skip(skipValue)
     .then((data) => {
       res.send({
         code: 200,
-        data: data
+        data: data,
+        total: total
       })
     })
     .catch((err) => {
       console.log("查询失败", err)
     })
+  });
+  
 })
 
 router.post("/add", function (req, res, next) {
   const { name } = req.body
   DataModel.findOne({ name }).then(data => {
-    console.log(1,data);
     if(!data){
       DataModel.create({...req.body}).then(data => {
           res.send({
