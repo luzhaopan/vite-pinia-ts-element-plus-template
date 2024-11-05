@@ -8,28 +8,27 @@
       <el-table-column prop="city" label="City" width="120" />
       <el-table-column prop="address" label="Address" width="600" />
       <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="160">
+      <el-table-column fixed="right" label="Operations" min-width="120">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleDetail"> Detail </el-button>
+          <!-- <el-button link type="primary" size="small" @click="handleDetail"> Detail </el-button> -->
           <el-button link type="primary" size="small" @click="handleEdit(scope.row)">
             Edit
           </el-button>
-          <el-button link type="primary" size="small" @click="handleDel(scope.row)"
-            >delete</el-button
-          >
+          <el-button link type="primary" size="small" @click="handleDel(scope.row)">
+            delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-dialog v-model="dialogVisible" title="Edit" width="500" :before-close="handleClose">
       <el-form
+        status-icon
         ref="ruleFormRef"
+        label-width="auto"
         style="max-width: 600px"
         :model="ruleForm"
         :rules="rules"
-        label-width="auto"
-        class="demo-ruleForm"
         :size="formSize"
-        status-icon
       >
         <el-form-item label="Name" prop="name">
           <el-input v-model="ruleForm.name" />
@@ -44,7 +43,13 @@
           <el-input v-model="ruleForm.address" />
         </el-form-item>
         <el-form-item label="Date" prop="date">
-          <el-date-picker v-model="ruleForm.date" type="date" placeholder="Pick a day" />
+          <el-date-picker
+            v-model="ruleForm.date"
+            type="date"
+            format="YYYY/MM/DD"
+            value-format="YYYY-MM-DD"
+            placeholder="Pick a day"
+          />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm(ruleFormRef)"> Create </el-button>
@@ -63,6 +68,7 @@
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 import { getTableData, editData, add, deleteData } from '@/api/home'
 
 const tableData = ref([])
@@ -89,9 +95,9 @@ const rules = reactive({
   ]
 })
 
-const handleDetail = () => {
-  console.log('click')
-}
+// const handleDetail = () => {
+//   console.log('click')
+// }
 
 const handleAdd = (row) => {
   isAdd.value = true
@@ -132,6 +138,8 @@ const submitForm = async (formEl) => {
       if (res.code === 200) {
         fetchTableData()
         dialogVisible.value = false
+      } else {
+        ElMessage.error(res.msg)
       }
     } else {
       console.log('error submit!', fields)
