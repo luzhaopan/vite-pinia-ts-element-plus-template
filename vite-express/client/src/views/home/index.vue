@@ -24,16 +24,14 @@
         <span>动态</span>
       </div>
     </template>
-    <div>
-      <div>
-        <div class="flex items-center mt-3" v-for="item in list" :key="item.id">
-          <img src="@/assets/avatar.webp" class="w-8 h-8 rounded-lg" />
-          <div class="content">
-            <div class="text-base font-bold">
-              {{ item.name }}
-            </div>
-            <div class="text-sm">{{ item.address }}</div>
+    <div class="overflow-y-auto max-h-96">
+      <div class="flex items-center mt-3" v-for="item in list" :key="item.id">
+        <img src="@/assets/avatar.webp" class="w-8 h-8 rounded-lg" />
+        <div class="content">
+          <div class="text-base font-bold">
+            {{ item.name }}
           </div>
+          <div class="text-sm">{{ item.address }}</div>
         </div>
       </div>
     </div>
