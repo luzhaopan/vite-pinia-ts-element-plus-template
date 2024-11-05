@@ -23,3 +23,11 @@ export function editData(params) {
     data: params
   })
 }
+
+export function deleteData(params) {
+  return request({
+    url: `/api/data/delete/${params.id}`,
+    method: 'get',
+    data: params
+  })
+}

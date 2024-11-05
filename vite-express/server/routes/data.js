@@ -36,13 +36,24 @@ router.post("/add", function (req, res, next) {
 })
 
 router.post("/edit", function (req, res, next) {
-  const { id, name } = req.body
+  const { _id, name } = req.body
   // console.log(req.body);
   // 更新条件
   // const query = { _id: id };
   // 更新内容
   // const update = {  name  };
-  DataModel.updateOne({ id },{name}).then(data => {
+  DataModel.updateOne({ _id: _id }, { ...req.body}).then(data => {
+    res.send({
+      code: 200
+    })
+  })
+   .catch((err) => {
+     console.log("失败", err)
+   })
+})
+
+router.get("/delete/:id", function (req, res, next) {
+  DataModel.deleteOne({ _id: req.params.id }).then(data => {
     res.send({
       code: 200
     })
